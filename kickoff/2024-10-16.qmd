@@ -13,7 +13,10 @@ format:
             \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
             \DefineVerbatimEnvironment{OutputCode}{Verbatim}{breaklines,commandchars=\\\{\}}
 ---
-
+## New student repo
+* New student repo:  [https://github.com/uchicago-harris-dap/student30538  (link)](https://github.com/uchicago-harris-dap/student30538)
+* You will have to clone it again
+* Simpler structure: just one branch, with separate folders for before and after lecture 
 
 ## MUD concerns about workload
 * We removed a section from PS2. Revised version is in student repo.
