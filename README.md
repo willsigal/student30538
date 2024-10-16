@@ -27,7 +27,7 @@ Each problem set and mini-lesson will have their own folders within their respec
 2. **Clone the repository**:
    - Open GitHub Desktop.
    - Click on `File > Clone Repository`.
-   - Enter the repository URL: https://github.com/uchicago-harris-dap/student30538_new.
+   - Enter the repository URL: https://github.com/uchicago-harris-dap/student30538.
    - Choose the location on your computer to save the repository and click `Clone`.
    
 
@@ -40,11 +40,11 @@ Each problem set and mini-lesson will have their own folders within their respec
    - Open your terminal.
    - Run the following command to clone the repository:
      ```bash
-     git clone https://github.com/uchicago-harris-dap/student30538_new
+     git clone https://github.com/uchicago-harris-dap/student30538
      ```
    - Navigate into the cloned repository folder:
      ```bash
-     cd student30538_new
+     cd student30538
      ```
 
 ## Updating the Repository
