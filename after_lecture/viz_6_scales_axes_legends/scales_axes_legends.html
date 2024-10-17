@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Peter Ganong and Maggie Shi">
-<meta name="dcterms.date" content="2024-10-16">
+<meta name="dcterms.date" content="2024-10-17">
 
 <title>Visualization (Scales and Guides)</title>
 <style>
@@ -147,7 +147,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 16, 2024</p>
+      <p class="date">October 17, 2024</p>
     </div>
   </div>
   
@@ -216,17 +216,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>How does neomycin compare to other antibiotics, such as streptomycin and penicillin?</li>
 <li>For which types of bacteria are neomycin and penicillin effective?</li>
 </ol>
-<div id="9ec029a0" class="cell" data-execution_count="1">
+<div id="00879898" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> altair <span class="im">as</span> alt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="580e57fe" class="cell" data-execution_count="2">
+<div id="f5966837" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>antibiotics <span class="op">=</span> <span class="st">'https://cdn.jsdelivr.net/npm/vega-datasets@1/data/burtin.json'</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>pd.read_json(antibiotics)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="34fd7de1" class="cell" data-execution_count="4">
+<div id="e69a2a8a" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>antibiotics[[<span class="st">'Bacteria'</span>, <span class="st">'Penicillin'</span>, <span class="st">'Streptomycin'</span>, <span class="st">'Neomycin'</span>]].head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="27">
+<div class="cell-output cell-output-display" data-execution_count="3">
 <div>
 
 
@@ -287,7 +287,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>are these data “tidy”?</li>
 <li>if no, how would you tidy them?</li>
 </ul>
-<p><strong>NOTES:</strong> <em>solution: reshape from wide to long</em></p>
 </section>
 </section>
 <section id="configuring-scales-and-axes" class="level1">
@@ -304,30 +303,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="plotting-antibiotic-resistance-adjusting-the-scale-type" class="level2">
 <h2 class="anchored" data-anchor-id="plotting-antibiotic-resistance-adjusting-the-scale-type">Plotting Antibiotic Resistance: Adjusting the Scale Type</h2>
 <p>Default scale is linear</p>
-<div id="fba752f0" class="cell" data-execution_count="5">
+<div id="3e48b9b7" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>alt.Chart(antibiotics).mark_circle().encode(</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    alt.X(<span class="st">'Neomycin:Q'</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="28">
+<div class="cell-output cell-output-display" data-execution_count="4">
 
 <style>
-  #altair-viz-c5b3222f386f450f9bf669a65f68c4c2.vega-embed {
+  #altair-viz-be350dddede64983a597c7176fc89a98.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-c5b3222f386f450f9bf669a65f68c4c2.vega-embed details,
-  #altair-viz-c5b3222f386f450f9bf669a65f68c4c2.vega-embed details summary {
+  #altair-viz-be350dddede64983a597c7176fc89a98.vega-embed details,
+  #altair-viz-be350dddede64983a597c7176fc89a98.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-c5b3222f386f450f9bf669a65f68c4c2"></div>
+<div id="altair-viz-be350dddede64983a597c7176fc89a98"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-c5b3222f386f450f9bf669a65f68c4c2") {
-      outputDiv = document.getElementById("altair-viz-c5b3222f386f450f9bf669a65f68c4c2");
+    if (outputDiv.id !== "altair-viz-be350dddede64983a597c7176fc89a98") {
+      outputDiv = document.getElementById("altair-viz-be350dddede64983a597c7176fc89a98");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -378,35 +377,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Discussion question: why is this plot hard to read?</p>
-<p><strong>NOTES:</strong> <em>solution: all the points are clustered at the bottom</em></p>
 </section>
 <section id="alt-scale-i" class="level2">
 <h2 class="anchored" data-anchor-id="alt-scale-i">alt scale I</h2>
-<div id="2e54221d" class="cell" data-execution_count="6">
+<div id="d38dda0c" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>alt.Chart(antibiotics).mark_circle().encode(</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    alt.X(<span class="st">'Neomycin:Q'</span>,</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>          scale<span class="op">=</span>alt.Scale(<span class="bu">type</span><span class="op">=</span><span class="st">'sqrt'</span>))</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="29">
+<div class="cell-output cell-output-display" data-execution_count="5">
 
 <style>
-  #altair-viz-39b5bc02dca4479e9f689a64e7ea21a0.vega-embed {
+  #altair-viz-551ff3df61264300b2448691737d4b87.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-39b5bc02dca4479e9f689a64e7ea21a0.vega-embed details,
-  #altair-viz-39b5bc02dca4479e9f689a64e7ea21a0.vega-embed details summary {
+  #altair-viz-551ff3df61264300b2448691737d4b87.vega-embed details,
+  #altair-viz-551ff3df61264300b2448691737d4b87.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-39b5bc02dca4479e9f689a64e7ea21a0"></div>
+<div id="altair-viz-551ff3df61264300b2448691737d4b87"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-39b5bc02dca4479e9f689a64e7ea21a0") {
-      outputDiv = document.getElementById("altair-viz-39b5bc02dca4479e9f689a64e7ea21a0");
+    if (outputDiv.id !== "altair-viz-551ff3df61264300b2448691737d4b87") {
+      outputDiv = document.getElementById("altair-viz-551ff3df61264300b2448691737d4b87");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -459,31 +457,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="alt-scale-ii" class="level2">
 <h2 class="anchored" data-anchor-id="alt-scale-ii">alt scale II</h2>
-<div id="c82c0685" class="cell" data-execution_count="7">
+<div id="95d9b725" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>alt.Chart(antibiotics).mark_circle().encode(</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    alt.X(<span class="st">'Neomycin:Q'</span>,</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>          scale<span class="op">=</span>alt.Scale(<span class="bu">type</span><span class="op">=</span><span class="st">'log'</span>))</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="30">
+<div class="cell-output cell-output-display" data-execution_count="6">
 
 <style>
-  #altair-viz-ae79ee2355b24e56b9043b8bcc185417.vega-embed {
+  #altair-viz-cb93ff55773a4bdd8d6ca31c12fafd73.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-ae79ee2355b24e56b9043b8bcc185417.vega-embed details,
-  #altair-viz-ae79ee2355b24e56b9043b8bcc185417.vega-embed details summary {
+  #altair-viz-cb93ff55773a4bdd8d6ca31c12fafd73.vega-embed details,
+  #altair-viz-cb93ff55773a4bdd8d6ca31c12fafd73.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-ae79ee2355b24e56b9043b8bcc185417"></div>
+<div id="altair-viz-cb93ff55773a4bdd8d6ca31c12fafd73"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-ae79ee2355b24e56b9043b8bcc185417") {
-      outputDiv = document.getElementById("altair-viz-ae79ee2355b24e56b9043b8bcc185417");
+    if (outputDiv.id !== "altair-viz-cb93ff55773a4bdd8d6ca31c12fafd73") {
+      outputDiv = document.getElementById("altair-viz-cb93ff55773a4bdd8d6ca31c12fafd73");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -534,8 +532,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Discussion question: what does this plot do well? What is confusing about it?</p>
-<p><strong>NOTES:</strong> *solution: does well: gives a broad sense of scale</p>
-<p>does poorly: The hashes between units of base 10 are not equally spaced and therefore pretty hard to read. It seems like they are trying to capture equally divided units (e.g.&nbsp;1, 2, 3, 4, 5…). But even this is not correct! I think there are only 7 dashes between each value, like 1 and 10. So that suggests that there is something more complicated going on. My best guess is that it choose to suppress dashes 8 and 9, but this is pretty confusing for a reader…*</p>
 </section>
 <section id="styling-an-axis" class="level2">
 <h2 class="anchored" data-anchor-id="styling-an-axis">Styling an Axis</h2>
@@ -543,32 +539,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Lower dosages indicate higher effectiveness. However, many readers will expect values that are “better” to be “up and to the right” within a chart.</li>
 <li>If we want to cater to this convention set the encoding <code>sort</code> property to <code>'descending'</code>:</li>
 </ul>
-<div id="1c2164fd" class="cell" data-execution_count="8">
+<div id="05505baa" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>alt.Chart(antibiotics).mark_circle().encode(</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    alt.X(<span class="st">'Neomycin:Q'</span>,</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>          sort<span class="op">=</span><span class="st">'descending'</span>,</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>          scale<span class="op">=</span>alt.Scale(<span class="bu">type</span><span class="op">=</span><span class="st">'log'</span>))</span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="31">
+<div class="cell-output cell-output-display" data-execution_count="7">
 
 <style>
-  #altair-viz-81f795e0269e4caf9c961cc57a2a6813.vega-embed {
+  #altair-viz-a099bfa5dc6a4291804f7753437b4b3b.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-81f795e0269e4caf9c961cc57a2a6813.vega-embed details,
-  #altair-viz-81f795e0269e4caf9c961cc57a2a6813.vega-embed details summary {
+  #altair-viz-a099bfa5dc6a4291804f7753437b4b3b.vega-embed details,
+  #altair-viz-a099bfa5dc6a4291804f7753437b4b3b.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-81f795e0269e4caf9c961cc57a2a6813"></div>
+<div id="altair-viz-a099bfa5dc6a4291804f7753437b4b3b"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-81f795e0269e4caf9c961cc57a2a6813") {
-      outputDiv = document.getElementById("altair-viz-81f795e0269e4caf9c961cc57a2a6813");
+    if (outputDiv.id !== "altair-viz-a099bfa5dc6a4291804f7753437b4b3b") {
+      outputDiv = document.getElementById("altair-viz-a099bfa5dc6a4291804f7753437b4b3b");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -621,33 +617,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="add-a-clarifying-title" class="level2">
 <h2 class="anchored" data-anchor-id="add-a-clarifying-title">add a clarifying title</h2>
-<div id="28fa042b" class="cell" data-execution_count="9">
+<div id="f2f419e4" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>alt.Chart(antibiotics).mark_circle().encode(</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    alt.X(<span class="st">'Neomycin:Q'</span>,</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>          sort<span class="op">=</span><span class="st">'descending'</span>,</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>          scale<span class="op">=</span>alt.Scale(<span class="bu">type</span><span class="op">=</span><span class="st">'log'</span>),</span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>          title<span class="op">=</span><span class="st">'← Less effective --- Neomycin MIC (μg/ml) --- more effective →'</span>)</span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="32">
+<div class="cell-output cell-output-display" data-execution_count="8">
 
 <style>
-  #altair-viz-2cbb161e71854d2f92a6761b774a441e.vega-embed {
+  #altair-viz-eae9eab37c1b4384895c9f5cd86a8f80.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-2cbb161e71854d2f92a6761b774a441e.vega-embed details,
-  #altair-viz-2cbb161e71854d2f92a6761b774a441e.vega-embed details summary {
+  #altair-viz-eae9eab37c1b4384895c9f5cd86a8f80.vega-embed details,
+  #altair-viz-eae9eab37c1b4384895c9f5cd86a8f80.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-2cbb161e71854d2f92a6761b774a441e"></div>
+<div id="altair-viz-eae9eab37c1b4384895c9f5cd86a8f80"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-2cbb161e71854d2f92a6761b774a441e") {
-      outputDiv = document.getElementById("altair-viz-2cbb161e71854d2f92a6761b774a441e");
+    if (outputDiv.id !== "altair-viz-eae9eab37c1b4384895c9f5cd86a8f80") {
+      outputDiv = document.getElementById("altair-viz-eae9eab37c1b4384895c9f5cd86a8f80");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -702,14 +698,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>The fact that it is a log scale is self-evident. So is the fact that it is reversed.</li>
 <li>What the reader really wants to know is which direction is “good”. Just tell them that directly.</li>
 </ol>
-<p><strong>NOTES:</strong> MS to GGG: it’s actually not self-evident to me at first glance that it’s log scale because it’s reversed. If I saw that, I would actually it’s some kind of bug in the code. It’d be better if the scale was just “100, 10, 1, 0.1, 0.001”</p>
 </section>
 <section id="comparing-antibiotics-adjusting-grid-lines-tick-counts-and-sizing" class="level2">
 <h2 class="anchored" data-anchor-id="comparing-antibiotics-adjusting-grid-lines-tick-counts-and-sizing">Comparing Antibiotics: Adjusting Grid Lines, Tick Counts, and Sizing</h2>
 <p><em>How does neomycin compare to streptomycin?</em></p>
 <p>Question for the class: what does each point repesent?</p>
-<p><strong>NOTES:</strong> <em>solution: Each point is 1 bacteria strain, and we’re plotting two of the bacteria’s properties against each other.</em></p>
-<div id="ecb8baf7" class="cell" data-execution_count="10">
+<div id="04cce099" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>alt.Chart(antibiotics).mark_circle().encode(</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    alt.X(<span class="st">'Neomycin:Q'</span>,</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>          sort<span class="op">=</span><span class="st">'descending'</span>,</span>
@@ -720,26 +714,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>          scale<span class="op">=</span>alt.Scale(<span class="bu">type</span><span class="op">=</span><span class="st">'log'</span>),</span>
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>          title<span class="op">=</span><span class="st">'← Less effective --- Streptomycin MIC (μg/ml) --- more effective →'</span>)</span>
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="33">
+<div class="cell-output cell-output-display" data-execution_count="9">
 
 <style>
-  #altair-viz-b0878d7891f64b358db713d02d58f617.vega-embed {
+  #altair-viz-16d85c5513a848b988f3880329b59a21.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-b0878d7891f64b358db713d02d58f617.vega-embed details,
-  #altair-viz-b0878d7891f64b358db713d02d58f617.vega-embed details summary {
+  #altair-viz-16d85c5513a848b988f3880329b59a21.vega-embed details,
+  #altair-viz-16d85c5513a848b988f3880329b59a21.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-b0878d7891f64b358db713d02d58f617"></div>
+<div id="altair-viz-16d85c5513a848b988f3880329b59a21"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-b0878d7891f64b358db713d02d58f617") {
-      outputDiv = document.getElementById("altair-viz-b0878d7891f64b358db713d02d58f617");
+    if (outputDiv.id !== "altair-viz-16d85c5513a848b988f3880329b59a21") {
+      outputDiv = document.getElementById("altair-viz-16d85c5513a848b988f3880329b59a21");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -791,7 +785,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>This plot shows that bacteria responds similarly to these two antibiotics – it approximately follows the 45-degree line.</p>
 <p><em>How does neomycin compare to penicillin?</em></p>
-<div id="2f8c84c7" class="cell" data-execution_count="11">
+<div id="5c4146d5" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>alt.Chart(antibiotics).mark_circle().encode(</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    alt.X(<span class="st">'Neomycin:Q'</span>,</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>          sort<span class="op">=</span><span class="st">'descending'</span>,</span>
@@ -802,26 +796,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>          scale<span class="op">=</span>alt.Scale(<span class="bu">type</span><span class="op">=</span><span class="st">'log'</span>),</span>
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>          title<span class="op">=</span><span class="st">'← Less effective --- Penicillin MIC (μg/ml) --- more effective →'</span>)</span>
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="34">
+<div class="cell-output cell-output-display" data-execution_count="10">
 
 <style>
-  #altair-viz-88e35b32c03d40749b4a3697afa1cf65.vega-embed {
+  #altair-viz-218190c1d54f4150933e3746cd8a1661.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-88e35b32c03d40749b4a3697afa1cf65.vega-embed details,
-  #altair-viz-88e35b32c03d40749b4a3697afa1cf65.vega-embed details summary {
+  #altair-viz-218190c1d54f4150933e3746cd8a1661.vega-embed details,
+  #altair-viz-218190c1d54f4150933e3746cd8a1661.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-88e35b32c03d40749b4a3697afa1cf65"></div>
+<div id="altair-viz-218190c1d54f4150933e3746cd8a1661"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-88e35b32c03d40749b4a3697afa1cf65") {
-      outputDiv = document.getElementById("altair-viz-88e35b32c03d40749b4a3697afa1cf65");
+    if (outputDiv.id !== "altair-viz-218190c1d54f4150933e3746cd8a1661") {
+      outputDiv = document.getElementById("altair-viz-218190c1d54f4150933e3746cd8a1661");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -876,7 +870,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="fix-domain-equalize-aspect-ratio" class="level2">
 <h2 class="anchored" data-anchor-id="fix-domain-equalize-aspect-ratio">fix <code>domain</code>, equalize aspect ratio</h2>
 <p>While this plot is useful, we can make it better. The x and y axes use the same units, but have different extents (the chart width is larger than the height) and different domains (0.001 to 100 for the x-axis, and 0.001 to 1,000 for the y-axis).</p>
-<div id="8c8e654c" class="cell" data-execution_count="12">
+<div id="d7bcd678" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>alt.Chart(antibiotics).mark_circle().encode(</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    alt.X(<span class="st">'Neomycin:Q'</span>,</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>          sort<span class="op">=</span><span class="st">'descending'</span>,</span>
@@ -887,26 +881,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>          scale<span class="op">=</span>alt.Scale(<span class="bu">type</span><span class="op">=</span><span class="st">'log'</span>, domain<span class="op">=</span>[<span class="fl">0.001</span>, <span class="dv">1000</span>]),</span>
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>          title<span class="op">=</span><span class="st">'← Less effective --- Penicillin MIC (μg/ml) --- more effective →'</span>)</span>
 <span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>).properties(width<span class="op">=</span><span class="dv">250</span>, height<span class="op">=</span><span class="dv">250</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="35">
+<div class="cell-output cell-output-display" data-execution_count="11">
 
 <style>
-  #altair-viz-e31c2e78a3504134893ac184773416cb.vega-embed {
+  #altair-viz-22f5ad4287f44f4381abb19916aff91a.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-e31c2e78a3504134893ac184773416cb.vega-embed details,
-  #altair-viz-e31c2e78a3504134893ac184773416cb.vega-embed details summary {
+  #altair-viz-22f5ad4287f44f4381abb19916aff91a.vega-embed details,
+  #altair-viz-22f5ad4287f44f4381abb19916aff91a.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-e31c2e78a3504134893ac184773416cb"></div>
+<div id="altair-viz-22f5ad4287f44f4381abb19916aff91a"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-e31c2e78a3504134893ac184773416cb") {
-      outputDiv = document.getElementById("altair-viz-e31c2e78a3504134893ac184773416cb");
+    if (outputDiv.id !== "altair-viz-22f5ad4287f44f4381abb19916aff91a") {
+      outputDiv = document.getElementById("altair-viz-22f5ad4287f44f4381abb19916aff91a");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -960,7 +954,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="reduce-grid-clutter-with-alt.axistickcount5" class="level2">
 <h2 class="anchored" data-anchor-id="reduce-grid-clutter-with-alt.axistickcount5">reduce grid clutter with <code>alt.Axis(tickCount=5)</code></h2>
 <p>Also set <code>mark_circle(size=80)</code></p>
-<div id="065ee398" class="cell" data-execution_count="13">
+<div id="a98f9a91" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>alt.Chart(antibiotics).mark_circle(size<span class="op">=</span><span class="dv">80</span>).encode(</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    alt.X(<span class="st">'Neomycin:Q'</span>,</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>          sort<span class="op">=</span><span class="st">'descending'</span>,</span>
@@ -973,26 +967,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>          axis<span class="op">=</span>alt.Axis(tickCount<span class="op">=</span><span class="dv">5</span>),</span>
 <span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>          title<span class="op">=</span><span class="st">'← Less effective --- Penicillin MIC (μg/ml) --- more effective →'</span>)</span>
 <span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>).properties(width<span class="op">=</span><span class="dv">250</span>, height<span class="op">=</span><span class="dv">250</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="36">
+<div class="cell-output cell-output-display" data-execution_count="12">
 
 <style>
-  #altair-viz-50817e805a784db79abb2fca622970fb.vega-embed {
+  #altair-viz-5593ade4bf4a4595bab114c407d0e8b6.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-50817e805a784db79abb2fca622970fb.vega-embed details,
-  #altair-viz-50817e805a784db79abb2fca622970fb.vega-embed details summary {
+  #altair-viz-5593ade4bf4a4595bab114c407d0e8b6.vega-embed details,
+  #altair-viz-5593ade4bf4a4595bab114c407d0e8b6.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-50817e805a784db79abb2fca622970fb"></div>
+<div id="altair-viz-5593ade4bf4a4595bab114c407d0e8b6"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-50817e805a784db79abb2fca622970fb") {
-      outputDiv = document.getElementById("altair-viz-50817e805a784db79abb2fca622970fb");
+    if (outputDiv.id !== "altair-viz-5593ade4bf4a4595bab114c407d0e8b6") {
+      outputDiv = document.getElementById("altair-viz-5593ade4bf4a4595bab114c407d0e8b6");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -1043,7 +1037,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Discussion questions: 1) What questions does this plot answer? 2) What further questions does this plot raise?</p>
-<p><strong>NOTES:</strong> <em>solution Answers: 1) some bacteria respond well to neomycin but not penicillin, and vice versa! 2) for what types of bacteria is N effective or P effective? Need some way to dig deeper. This is what we will do in the remainder of the lecture</em></p>
 </section>
 <section id="configuring-scales-and-axes-summary" class="level2">
 <h2 class="anchored" data-anchor-id="configuring-scales-and-axes-summary">Configuring Scales and Axes: summary</h2>
@@ -1094,9 +1087,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <figcaption>Gram staining example</figcaption>
 </figure>
 </div>
-<div id="6bc09da4" class="cell" data-execution_count="14">
+<div id="8a6abc65" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>antibiotics[[<span class="st">'Gram_Staining'</span>]].tail()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="37">
+<div class="cell-output cell-output-display" data-execution_count="13">
 <div>
 
 
@@ -1138,7 +1131,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="alt.colorgram_stainingn" class="level2">
 <h2 class="anchored" data-anchor-id="alt.colorgram_stainingn">alt.Color(‘Gram_Staining:N’)</h2>
 <p>Let’s encode <code>Gram_Staining</code> on the <code>color</code> channel as a nominal data type:</p>
-<div id="522f53c8" class="cell" data-execution_count="15">
+<div id="7c86a941" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>alt.Chart(antibiotics).mark_circle(size<span class="op">=</span><span class="dv">80</span>).encode(</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    alt.X(<span class="st">'Neomycin:Q'</span>,</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>          sort<span class="op">=</span><span class="st">'descending'</span>,</span>
@@ -1152,26 +1145,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>          title<span class="op">=</span><span class="st">'← Less effective --- Penicillin MIC (μg/ml) --- more effective →'</span>),</span>
 <span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    alt.Color(<span class="st">'Gram_Staining:N'</span>)</span>
 <span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>).properties(width<span class="op">=</span><span class="dv">250</span>, height<span class="op">=</span><span class="dv">250</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="38">
+<div class="cell-output cell-output-display" data-execution_count="14">
 
 <style>
-  #altair-viz-c6eb7293b8454568af8b4f79e60ed15e.vega-embed {
+  #altair-viz-3513b75d0ac24ef2ae2419893c094ec3.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-c6eb7293b8454568af8b4f79e60ed15e.vega-embed details,
-  #altair-viz-c6eb7293b8454568af8b4f79e60ed15e.vega-embed details summary {
+  #altair-viz-3513b75d0ac24ef2ae2419893c094ec3.vega-embed details,
+  #altair-viz-3513b75d0ac24ef2ae2419893c094ec3.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-c6eb7293b8454568af8b4f79e60ed15e"></div>
+<div id="altair-viz-3513b75d0ac24ef2ae2419893c094ec3"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-c6eb7293b8454568af8b4f79e60ed15e") {
-      outputDiv = document.getElementById("altair-viz-c6eb7293b8454568af8b4f79e60ed15e");
+    if (outputDiv.id !== "altair-viz-3513b75d0ac24ef2ae2419893c094ec3") {
+      outputDiv = document.getElementById("altair-viz-3513b75d0ac24ef2ae2419893c094ec3");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -1226,7 +1219,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="sometimes-helpful-trick-choose-colors-with-external-meaning" class="level2">
 <h2 class="anchored" data-anchor-id="sometimes-helpful-trick-choose-colors-with-external-meaning">Sometimes helpful trick: choose colors with external meaning</h2>
 <p>However, we might wish to customize the colors used. In this case, we might want to use the colors that come out in lab when you do gram staining. Let’s use those colors by specifying an explicit scale mapping from the data <code>domain</code> to the color <code>range</code>:</p>
-<div id="fb8a574e" class="cell" data-execution_count="16">
+<div id="e7ade6ba" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>alt.Chart(antibiotics).mark_circle(size<span class="op">=</span><span class="dv">80</span>).encode(</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    alt.X(<span class="st">'Neomycin:Q'</span>,</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>          sort<span class="op">=</span><span class="st">'descending'</span>,</span>
@@ -1242,26 +1235,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>          scale<span class="op">=</span>alt.Scale(domain<span class="op">=</span>[<span class="st">'negative'</span>, <span class="st">'positive'</span>], <span class="bu">range</span><span class="op">=</span>[<span class="st">'hotpink'</span>, <span class="st">'purple'</span>])</span>
 <span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>).properties(width<span class="op">=</span><span class="dv">250</span>, height<span class="op">=</span><span class="dv">250</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="39">
+<div class="cell-output cell-output-display" data-execution_count="15">
 
 <style>
-  #altair-viz-ccc502e3d65b49d3b4cc0ab4fd911f06.vega-embed {
+  #altair-viz-0618ab5de07f4cd0bb53240d1f282f68.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-ccc502e3d65b49d3b4cc0ab4fd911f06.vega-embed details,
-  #altair-viz-ccc502e3d65b49d3b4cc0ab4fd911f06.vega-embed details summary {
+  #altair-viz-0618ab5de07f4cd0bb53240d1f282f68.vega-embed details,
+  #altair-viz-0618ab5de07f4cd0bb53240d1f282f68.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-ccc502e3d65b49d3b4cc0ab4fd911f06"></div>
+<div id="altair-viz-0618ab5de07f4cd0bb53240d1f282f68"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-ccc502e3d65b49d3b4cc0ab4fd911f06") {
-      outputDiv = document.getElementById("altair-viz-ccc502e3d65b49d3b4cc0ab4fd911f06");
+    if (outputDiv.id !== "altair-viz-0618ab5de07f4cd0bb53240d1f282f68") {
+      outputDiv = document.getElementById("altair-viz-0618ab5de07f4cd0bb53240d1f282f68");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -1314,7 +1307,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="color-by-species-i" class="level2">
 <h2 class="anchored" data-anchor-id="color-by-species-i">Color by Species I</h2>
-<div id="21e2759e" class="cell" data-execution_count="17">
+<div id="249e22ae" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>alt.Chart(antibiotics).mark_circle(size<span class="op">=</span><span class="dv">80</span>).encode(</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    alt.X(<span class="st">'Neomycin:Q'</span>,</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>          sort<span class="op">=</span><span class="st">'descending'</span>,</span>
@@ -1328,26 +1321,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>          title<span class="op">=</span><span class="st">'← Less effective --- Penicillin MIC (μg/ml) --- more effective →'</span>),</span>
 <span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    alt.Color(<span class="st">'Bacteria:N'</span>)</span>
 <span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>).properties(width<span class="op">=</span><span class="dv">250</span>, height<span class="op">=</span><span class="dv">250</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="40">
+<div class="cell-output cell-output-display" data-execution_count="16">
 
 <style>
-  #altair-viz-81b6a97dfe9c44d6854f1aebe944cb52.vega-embed {
+  #altair-viz-9e297b08cf354b3a8a11aeca7f080688.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-81b6a97dfe9c44d6854f1aebe944cb52.vega-embed details,
-  #altair-viz-81b6a97dfe9c44d6854f1aebe944cb52.vega-embed details summary {
+  #altair-viz-9e297b08cf354b3a8a11aeca7f080688.vega-embed details,
+  #altair-viz-9e297b08cf354b3a8a11aeca7f080688.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-81b6a97dfe9c44d6854f1aebe944cb52"></div>
+<div id="altair-viz-9e297b08cf354b3a8a11aeca7f080688"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-81b6a97dfe9c44d6854f1aebe944cb52") {
-      outputDiv = document.getElementById("altair-viz-81b6a97dfe9c44d6854f1aebe944cb52");
+    if (outputDiv.id !== "altair-viz-9e297b08cf354b3a8a11aeca7f080688") {
+      outputDiv = document.getElementById("altair-viz-9e297b08cf354b3a8a11aeca7f080688");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -1398,12 +1391,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Discussion question: what’s wrong with this plot?</p>
-<p><strong>NOTES:</strong> <em>solution colors get reused because there are more than 10 legend items</em></p>
 </section>
 <section id="color-by-species-ii" class="level2">
 <h2 class="anchored" data-anchor-id="color-by-species-ii">Color by Species II</h2>
 <p>Use <code>tableau20</code> so we have 20 colors instead of 10</p>
-<div id="29e7314e" class="cell" data-execution_count="18">
+<div id="5df818b4" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>alt.Chart(antibiotics).mark_circle(size<span class="op">=</span><span class="dv">80</span>).encode(</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    alt.X(<span class="st">'Neomycin:Q'</span>,</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>          sort<span class="op">=</span><span class="st">'descending'</span>,</span>
@@ -1418,26 +1410,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    alt.Color(<span class="st">'Bacteria:N'</span>,</span>
 <span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>          scale<span class="op">=</span>alt.Scale(scheme<span class="op">=</span><span class="st">'tableau20'</span>))</span>
 <span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>).properties(width<span class="op">=</span><span class="dv">250</span>, height<span class="op">=</span><span class="dv">250</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="41">
+<div class="cell-output cell-output-display" data-execution_count="17">
 
 <style>
-  #altair-viz-9d8606deba224817ba7f95a22f256d21.vega-embed {
+  #altair-viz-9c08d7829dae4c9a8483a5d489920193.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-9d8606deba224817ba7f95a22f256d21.vega-embed details,
-  #altair-viz-9d8606deba224817ba7f95a22f256d21.vega-embed details summary {
+  #altair-viz-9c08d7829dae4c9a8483a5d489920193.vega-embed details,
+  #altair-viz-9c08d7829dae4c9a8483a5d489920193.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-9d8606deba224817ba7f95a22f256d21"></div>
+<div id="altair-viz-9c08d7829dae4c9a8483a5d489920193"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-9d8606deba224817ba7f95a22f256d21") {
-      outputDiv = document.getElementById("altair-viz-9d8606deba224817ba7f95a22f256d21");
+    if (outputDiv.id !== "altair-viz-9c08d7829dae4c9a8483a5d489920193") {
+      outputDiv = document.getElementById("altair-viz-9c08d7829dae4c9a8483a5d489920193");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -1491,7 +1483,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="color-by-species-iii-color-as-o" class="level2">
 <h2 class="anchored" data-anchor-id="color-by-species-iii-color-as-o">Color by Species III – color as <code>O</code></h2>
-<div id="d88e6bef" class="cell" data-execution_count="19">
+<div id="01f7ce94" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>alt.Chart(antibiotics).mark_circle(size<span class="op">=</span><span class="dv">80</span>).encode(</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    alt.X(<span class="st">'Neomycin:Q'</span>,</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>          sort<span class="op">=</span><span class="st">'descending'</span>,</span>
@@ -1505,26 +1497,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>          title<span class="op">=</span><span class="st">'← Less effective --- Penicillin MIC (μg/ml) --- more effective →'</span>),</span>
 <span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>    alt.Color(<span class="st">'Bacteria:O'</span>)</span>
 <span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>).properties(width<span class="op">=</span><span class="dv">250</span>, height<span class="op">=</span><span class="dv">250</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="42">
+<div class="cell-output cell-output-display" data-execution_count="18">
 
 <style>
-  #altair-viz-cb9bf298c3934630a8a36e6092a0cb54.vega-embed {
+  #altair-viz-7682a6964c2443f4b780d6a9cec1e52c.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-cb9bf298c3934630a8a36e6092a0cb54.vega-embed details,
-  #altair-viz-cb9bf298c3934630a8a36e6092a0cb54.vega-embed details summary {
+  #altair-viz-7682a6964c2443f4b780d6a9cec1e52c.vega-embed details,
+  #altair-viz-7682a6964c2443f4b780d6a9cec1e52c.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-cb9bf298c3934630a8a36e6092a0cb54"></div>
+<div id="altair-viz-7682a6964c2443f4b780d6a9cec1e52c"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-cb9bf298c3934630a8a36e6092a0cb54") {
-      outputDiv = document.getElementById("altair-viz-cb9bf298c3934630a8a36e6092a0cb54");
+    if (outputDiv.id !== "altair-viz-7682a6964c2443f4b780d6a9cec1e52c") {
+      outputDiv = document.getElementById("altair-viz-7682a6964c2443f4b780d6a9cec1e52c");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -1584,7 +1576,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="color-by-species-iv-use-viridis" class="level2">
 <h2 class="anchored" data-anchor-id="color-by-species-iv-use-viridis">Color by Species IV – use <code>viridis</code></h2>
 <p>This scheme increases both hue and luminance</p>
-<div id="1522e9b2" class="cell" data-execution_count="20">
+<div id="e979267c" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>alt.Chart(antibiotics).mark_circle(size<span class="op">=</span><span class="dv">80</span>).encode(</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    alt.X(<span class="st">'Neomycin:Q'</span>,</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>          sort<span class="op">=</span><span class="st">'descending'</span>,</span>
@@ -1599,26 +1591,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    alt.Color(<span class="st">'Bacteria:O'</span>,</span>
 <span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>          scale<span class="op">=</span>alt.Scale(scheme<span class="op">=</span><span class="st">'viridis'</span>))</span>
 <span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>).properties(width<span class="op">=</span><span class="dv">250</span>, height<span class="op">=</span><span class="dv">250</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="43">
+<div class="cell-output cell-output-display" data-execution_count="19">
 
 <style>
-  #altair-viz-01699ff9e8fe497c8a3c3bf3981e8fee.vega-embed {
+  #altair-viz-32e77aa37fde4b17bf080ea9b13d416d.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-01699ff9e8fe497c8a3c3bf3981e8fee.vega-embed details,
-  #altair-viz-01699ff9e8fe497c8a3c3bf3981e8fee.vega-embed details summary {
+  #altair-viz-32e77aa37fde4b17bf080ea9b13d416d.vega-embed details,
+  #altair-viz-32e77aa37fde4b17bf080ea9b13d416d.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-01699ff9e8fe497c8a3c3bf3981e8fee"></div>
+<div id="altair-viz-32e77aa37fde4b17bf080ea9b13d416d"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-01699ff9e8fe497c8a3c3bf3981e8fee") {
-      outputDiv = document.getElementById("altair-viz-01699ff9e8fe497c8a3c3bf3981e8fee");
+    if (outputDiv.id !== "altair-viz-32e77aa37fde4b17bf080ea9b13d416d") {
+      outputDiv = document.getElementById("altair-viz-32e77aa37fde4b17bf080ea9b13d416d");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -1693,12 +1685,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <p>Let’s troubleshoot in real-time. How would you get the color scheme to align with family? There’s more than one good way to do this.</p>
-<p><strong>NOTES:</strong> <em>solution 1) (less clever) manually assign colors to each strain by hand 2) (more clever) use string cleaning to move the family name to the front. 3) (not sure exactly how to do this in Python, but this is how I’d do it in Stata) assign each bacteria to a number, making sure bacteria in the same family are close to each other. Then just use the name as a label for the legend</em></p>
 </section>
 <section id="text-labels-by-species" class="level2">
 <h2 class="anchored" data-anchor-id="text-labels-by-species">Text Labels by Species</h2>
 <p>A more clear way to handle this is to use <code>mark_text()</code> to explicitly label each dot. However, that comes at the cost of adding a lot of chart clutter.</p>
-<div id="1532c4f0" class="cell" data-execution_count="21">
+<div id="eab60b94" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>base <span class="op">=</span> alt.Chart(antibiotics).mark_circle(size<span class="op">=</span><span class="dv">80</span>).encode(</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    alt.X(<span class="st">'Penicillin:Q'</span>,</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>          sort<span class="op">=</span><span class="st">'descending'</span>,</span>
@@ -1726,26 +1717,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>chart <span class="op">=</span> base <span class="op">+</span> text</span>
 <span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>chart</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="44">
+<div class="cell-output cell-output-display" data-execution_count="20">
 
 <style>
-  #altair-viz-ed60495bbb0e4c6da48df80a2e33992e.vega-embed {
+  #altair-viz-bdcc718ec40642fb90e0e6321e810443.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-ed60495bbb0e4c6da48df80a2e33992e.vega-embed details,
-  #altair-viz-ed60495bbb0e4c6da48df80a2e33992e.vega-embed details summary {
+  #altair-viz-bdcc718ec40642fb90e0e6321e810443.vega-embed details,
+  #altair-viz-bdcc718ec40642fb90e0e6321e810443.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-ed60495bbb0e4c6da48df80a2e33992e"></div>
+<div id="altair-viz-bdcc718ec40642fb90e0e6321e810443"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-ed60495bbb0e4c6da48df80a2e33992e") {
-      outputDiv = document.getElementById("altair-viz-ed60495bbb0e4c6da48df80a2e33992e");
+    if (outputDiv.id !== "altair-viz-bdcc718ec40642fb90e0e6321e810443") {
+      outputDiv = document.getElementById("altair-viz-bdcc718ec40642fb90e0e6321e810443");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -1796,12 +1787,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Discussion question – What is another way we have seen to make it possible for the reader to see what each dot is labeled, but using less clutter?</p>
-<p><strong>NOTES:</strong> <em>solution tool tip</em></p>
 </section>
 <section id="color-by-genus-i" class="level2">
 <h2 class="anchored" data-anchor-id="color-by-genus-i">Color by Genus I</h2>
 <p>Need to use <code>transform_calculate()</code> to extract <code>Genus</code></p>
-<div id="cab311cc" class="cell" data-execution_count="22">
+<div id="b88f236f" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>alt.Chart(antibiotics).mark_circle(size<span class="op">=</span><span class="dv">80</span>).transform_calculate(</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    Genus<span class="op">=</span><span class="st">'split(datum.Bacteria, " ")[0]'</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>).encode(</span>
@@ -1818,26 +1808,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>    alt.Color(<span class="st">'Genus:N'</span>,</span>
 <span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>          scale<span class="op">=</span>alt.Scale(scheme<span class="op">=</span><span class="st">'tableau20'</span>))</span>
 <span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>).properties(width<span class="op">=</span><span class="dv">250</span>, height<span class="op">=</span><span class="dv">250</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="45">
+<div class="cell-output cell-output-display" data-execution_count="21">
 
 <style>
-  #altair-viz-8fde7f2001ea4fc09c55ba837463bbae.vega-embed {
+  #altair-viz-bfbcdff2c4cf46989d2d979f6161ed24.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-8fde7f2001ea4fc09c55ba837463bbae.vega-embed details,
-  #altair-viz-8fde7f2001ea4fc09c55ba837463bbae.vega-embed details summary {
+  #altair-viz-bfbcdff2c4cf46989d2d979f6161ed24.vega-embed details,
+  #altair-viz-bfbcdff2c4cf46989d2d979f6161ed24.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-8fde7f2001ea4fc09c55ba837463bbae"></div>
+<div id="altair-viz-bfbcdff2c4cf46989d2d979f6161ed24"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-8fde7f2001ea4fc09c55ba837463bbae") {
-      outputDiv = document.getElementById("altair-viz-8fde7f2001ea4fc09c55ba837463bbae");
+    if (outputDiv.id !== "altair-viz-bfbcdff2c4cf46989d2d979f6161ed24") {
+      outputDiv = document.getElementById("altair-viz-bfbcdff2c4cf46989d2d979f6161ed24");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -1891,7 +1881,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="color-by-genus-ii" class="level2">
 <h2 class="anchored" data-anchor-id="color-by-genus-ii">Color by Genus II</h2>
 <p>Recode infrequent <code>Genus</code> values to “Other”.</p>
-<div id="77ec02cb" class="cell" data-execution_count="23">
+<div id="c24462d4" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>alt.Chart(antibiotics).mark_circle(size<span class="op">=</span><span class="dv">80</span>).transform_calculate(</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  Split<span class="op">=</span><span class="st">'split(datum.Bacteria, " ")[0]'</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>).transform_calculate(</span>
@@ -1913,26 +1903,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>            <span class="bu">range</span><span class="op">=</span>[<span class="st">'rgb(76,120,168)'</span>, <span class="st">'rgb(84,162,75)'</span>, <span class="st">'rgb(228,87,86)'</span>, <span class="st">'rgb(121,112,110)'</span>]</span>
 <span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>          ))</span>
 <span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>).properties(width<span class="op">=</span><span class="dv">250</span>, height<span class="op">=</span><span class="dv">250</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="46">
+<div class="cell-output cell-output-display" data-execution_count="22">
 
 <style>
-  #altair-viz-a2b37fb24de74494bcc6bf06d061ce5a.vega-embed {
+  #altair-viz-ae45cde148ef48e491c13c3d16949fca.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-a2b37fb24de74494bcc6bf06d061ce5a.vega-embed details,
-  #altair-viz-a2b37fb24de74494bcc6bf06d061ce5a.vega-embed details summary {
+  #altair-viz-ae45cde148ef48e491c13c3d16949fca.vega-embed details,
+  #altair-viz-ae45cde148ef48e491c13c3d16949fca.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-a2b37fb24de74494bcc6bf06d061ce5a"></div>
+<div id="altair-viz-ae45cde148ef48e491c13c3d16949fca"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-a2b37fb24de74494bcc6bf06d061ce5a") {
-      outputDiv = document.getElementById("altair-viz-a2b37fb24de74494bcc6bf06d061ce5a");
+    if (outputDiv.id !== "altair-viz-ae45cde148ef48e491c13c3d16949fca") {
+      outputDiv = document.getElementById("altair-viz-ae45cde148ef48e491c13c3d16949fca");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -1986,33 +1976,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="color-by-antibiotic-response-i" class="level2">
 <h2 class="anchored" data-anchor-id="color-by-antibiotic-response-i">Color by Antibiotic Response I</h2>
-<div id="231b6b29" class="cell" data-execution_count="24">
+<div id="7c8bc619" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>alt.Chart(antibiotics).mark_rect().encode(</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    alt.Y(<span class="st">'Bacteria:N'</span>,</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>      sort<span class="op">=</span>alt.EncodingSortField(field<span class="op">=</span><span class="st">'Penicillin'</span>, op<span class="op">=</span><span class="st">'max'</span>, order<span class="op">=</span><span class="st">'descending'</span>)</span>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    ),</span>
 <span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    alt.Color(<span class="st">'Penicillin:Q'</span>)</span>
 <span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="47">
+<div class="cell-output cell-output-display" data-execution_count="23">
 
 <style>
-  #altair-viz-54d9fe07847349f689542d385427c95c.vega-embed {
+  #altair-viz-d715415d1951480d8879884008f4c7cf.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-54d9fe07847349f689542d385427c95c.vega-embed details,
-  #altair-viz-54d9fe07847349f689542d385427c95c.vega-embed details summary {
+  #altair-viz-d715415d1951480d8879884008f4c7cf.vega-embed details,
+  #altair-viz-d715415d1951480d8879884008f4c7cf.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-54d9fe07847349f689542d385427c95c"></div>
+<div id="altair-viz-d715415d1951480d8879884008f4c7cf"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-54d9fe07847349f689542d385427c95c") {
-      outputDiv = document.getElementById("altair-viz-54d9fe07847349f689542d385427c95c");
+    if (outputDiv.id !== "altair-viz-d715415d1951480d8879884008f4c7cf") {
+      outputDiv = document.getElementById("altair-viz-d715415d1951480d8879884008f4c7cf");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -2071,7 +2061,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>format <code>alt.Y(... alt.Axis())</code></li>
 <li>format <code>alt.Color</code> with <code>plasma</code> color scheme, legend edits</li>
 </ul>
-<div id="08ef26dc" class="cell" data-execution_count="25">
+<div id="b08399ef" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>alt.Chart(antibiotics, title<span class="op">=</span><span class="st">'Penicillin Resistance of Bacterial Strains'</span>).mark_rect().encode(</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    alt.Y(<span class="st">'Bacteria:N'</span>,</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>      sort<span class="op">=</span>alt.EncodingSortField(field<span class="op">=</span><span class="st">'Penicillin'</span>, op<span class="op">=</span><span class="st">'max'</span>, order<span class="op">=</span><span class="st">'descending'</span>),</span>
@@ -2092,26 +2082,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>  anchor<span class="op">=</span><span class="st">'start'</span>, <span class="co"># anchor and left-align title</span></span>
 <span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>  offset<span class="op">=</span><span class="dv">5</span>        <span class="co"># set title offset from chart</span></span>
 <span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="48">
+<div class="cell-output cell-output-display" data-execution_count="24">
 
 <style>
-  #altair-viz-c05ab43afe94465a88b0b533f490c93d.vega-embed {
+  #altair-viz-262ba31f55414b36977b50bef0c93567.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-c05ab43afe94465a88b0b533f490c93d.vega-embed details,
-  #altair-viz-c05ab43afe94465a88b0b533f490c93d.vega-embed details summary {
+  #altair-viz-262ba31f55414b36977b50bef0c93567.vega-embed details,
+  #altair-viz-262ba31f55414b36977b50bef0c93567.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-c05ab43afe94465a88b0b533f490c93d"></div>
+<div id="altair-viz-262ba31f55414b36977b50bef0c93567"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-c05ab43afe94465a88b0b533f490c93d") {
-      outputDiv = document.getElementById("altair-viz-c05ab43afe94465a88b0b533f490c93d");
+    if (outputDiv.id !== "altair-viz-262ba31f55414b36977b50bef0c93567") {
+      outputDiv = document.getElementById("altair-viz-262ba31f55414b36977b50bef0c93567");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
