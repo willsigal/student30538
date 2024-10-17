@@ -40,19 +40,24 @@ Two steps:
     * *axes* which visualize scales with spatial ranges 
     * *legends* which visualize scales with color, size, or shape ranges
 
-## Dataset for this lecture
-
+## Dataset for this lecture: `antibiotics`
 * Each row: a type of bacteria
 * Each column: a type of antibiotic
-* Each value: *minimum inhibitory concentration (MIC)* the concentration of antibiotic (in micrograms per milliliter) required to prevent growth in vitro. Lower values means antibiotic is more effective
+* Each value: *minimum inhibitory concentration (MIC)* the concentration of antibiotic (in micrograms per milliliter) required to prevent growth in vitro. Lower values means antibiotic is *more effective*
 * There are two other columns with the genus of the bacteria and the response to a lab procedure called "gram staining". We will come back to these later.
-<!-- PG notes to self about questions
-* what year is this dataset come from? who generated it and how was it generated?
--->
+* "In the fall of 1951, Will Burtin published this graph showing the effectiveness of three popular antibiotics on 16 different bacteria, measured in terms of minimum inhibitory concentration." [source](http://borgar.net/s/2016/03/will-burtins-antibiotics/)
 
-Research questions 
+![](pictures/burtin.png)
 
-1. How does effective is neomycin against different types of bacteria?
+Discussion questions
+
+* headline? (aka the main message)
+* sub-messages? (other information one can learn beyond the main message)
+
+## Our research questions 
+We will dive deeper into his data with the following research questions: 
+
+1. How effective is neomycin against different types of bacteria?
 2. How does neomycin compare to other antibiotics, such as streptomycin and penicillin?
 3. For which types of bacteria are neomycin and penicillin effective?
 
@@ -78,13 +83,11 @@ antibiotics[['Bacteria', 'Penicillin', 'Streptomycin', 'Neomycin']].head()
 ```
 
 
-* Discussion questions: 1) are these data "tidy"? 2) if no, how would you tidy them?
+Discussion questions: 
 
+* are these data "tidy"? 
+* if no, how would you tidy them?
 
-::: {.notes .content-visible when-profile="speaker"}
-**NOTES:**
-*solution: reshape from wide to long*
-:::
 
 
 # Configuring Scales and Axes
@@ -105,12 +108,8 @@ alt.Chart(antibiotics).mark_circle().encode(
 )
 ```
 
-Why is this plot hard to read?
+Discussion question: why is this plot hard to read?
 
-::: {.notes .content-visible when-profile="speaker"}
-**NOTES:**
-*solution: all the points are clustered at the bottom*
-:::
 
 ## alt scale I
 ```{python}
@@ -129,15 +128,8 @@ alt.Chart(antibiotics).mark_circle().encode(
 )
 ```
 
-What does this plot do well? What is confusing about it?
+Discussion question: what does this plot do well? What is confusing about it?
 
-::: {.notes .content-visible when-profile="speaker"}
-**NOTES:**
-*solution: 
-does well: gives a broad sense of scale 
-
-does poorly: The hashes between units of base 10 are not equally spaced and therefore pretty hard to read. It seems like they are trying to capture equally divided units (e.g. 1, 2, 3, 4, 5...). But even this is not correct! I think there are only 7 dashes between each value, like 1 and 10. So that suggests that there is something more complicated going on. My best guess is that it choose to suppress dashes 8 and 9, but this is pretty confusing for a reader...*
-:::
 
 
 ## Styling an Axis
@@ -174,11 +166,6 @@ _How does neomycin compare to streptomycin?_
 
 Question for the class: what does each point repesent?
 
-::: {.notes .content-visible when-profile="speaker"}
-**NOTES:**
-*solution: Each point is 1 bacteria strain, and we're plotting two of the bacteria's properties against each other.*
-:::
-
 ```{python}
 alt.Chart(antibiotics).mark_circle().encode(
     alt.X('Neomycin:Q',
@@ -192,8 +179,8 @@ alt.Chart(antibiotics).mark_circle().encode(
 )
 ```
 
+This plot shows that bacteria responds similarly to these two antibiotics -- it approximately follows the 45-degree line.
 
-Bacteria responds similarly to these two antibiotics
 
 
 _How does neomycin compare to penicillin?_
@@ -251,14 +238,7 @@ alt.Chart(antibiotics).mark_circle(size=80).encode(
 
 Discussion questions: 1) What questions does this plot answer? 2) What further questions does this plot raise?
 
-::: {.notes .content-visible when-profile="speaker"}
-**NOTES:**
-*solution
-Answers: 
-1) some bacteria respond well to neomycin but not penicillin, and vice versa!
-2) for what types of bacteria is N effective or P effective? Need some way to dig deeper. This is what we will do in the remainder of the lecture*
-:::
- 
+
 
 
 ## Configuring Scales and Axes: summary 
@@ -366,11 +346,6 @@ alt.Chart(antibiotics).mark_circle(size=80).encode(
 
 Discussion question: what's wrong with this plot?
 
-::: {.notes .content-visible when-profile="speaker"}
-**NOTES:**
-*solution colors get reused because there are more than 10 legend items*
-:::
-
 
 ## Color by Species II 
 
@@ -457,13 +432,6 @@ Suppose instead that the family was instead at the *end* of the name
 
 Let's troubleshoot in real-time. How would you get the color scheme to align with family? There's more than one good way to do this.
 
-::: {.notes .content-visible when-profile="speaker"}
-**NOTES:**
-*solution 
-1) (less clever) manually assign colors to each strain by hand 
-2) (more clever) use string cleaning to move the family name to the front.
-3) (not sure exactly how to do this in Python, but this is how I'd do it in Stata) assign each bacteria to a number, making sure bacteria in the same family are close to each other. Then just use the name as a label for the legend*
-:::
 
 ## Text Labels by Species 
 
@@ -500,12 +468,6 @@ chart
 ```
 
 Discussion question -- What is another way we have seen to make it possible for the reader to see what each dot is labeled, but using less clutter?
-
-::: {.notes .content-visible when-profile="speaker"}
-**NOTES:**
-*solution tool tip*
-:::
-
 
 ## Color by Genus I
 
