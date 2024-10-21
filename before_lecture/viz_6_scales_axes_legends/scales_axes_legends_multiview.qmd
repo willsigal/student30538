@@ -294,7 +294,7 @@ How to make your axes and grids as informative as possible
 
 Remarks: 
 
-* This section of the textbook asks you to practice your "skepticism" muscle. What we mean by that is that it is mostly about showing what does *not* work. we will follow the textbook, but for many of the plots,  your first question should not be "where would I want to use this tool?" but rather "why is this not a good idea?"
+<!--* This section of the textbook asks you to practice your "skepticism" muscle. What we mean by that is that it is mostly about showing what does *not* work. we will follow the textbook, but for many of the plots,  your first question should not be "where would I want to use this tool?" but rather "why is this not a good idea?"-->
 * The official title of this section of lecture is about color legends, but the deeper lessons are about how to clean data to uncover and communciate structure
 
 ## Visualization as a tool for discovery
@@ -357,7 +357,7 @@ alt.Chart(antibiotics).mark_circle(size=80).encode(
 ).properties(width=250, height=250)
 ```
 
-
+<!--
 ## Discussion question
 
 Example in prior slide is jury-rigged to work nicely. They work because
@@ -372,8 +372,8 @@ Suppose instead that the family was instead at the *end* of the name
 | Viridans, streptococcus |
 | Hemolycticus, Streptococcus |
 
-Let's brainstrom in real-time. How would you get the color scheme to align with family? There's more than one good way to do this.
-
+Let's brainstorm in real-time. How would you get the color scheme to align with family? There's more than one good way to do this.
+-->
 
 ## Text Labels by Species 
 
@@ -381,15 +381,15 @@ A more clear way to handle this is to use `mark_text()` to explicitly label each
 
 ```{python}
 base = alt.Chart(antibiotics).mark_circle(size=80).encode(
-    alt.X('Penicillin:Q',
+    alt.X('Neomycin:Q',
           sort='descending',
           scale=alt.Scale(type='log', domain=[0.001, 1000]),
           axis=alt.Axis(tickCount=5),
-          title='← Less effective --- Penicillin MIC (μg/ml) --- more effective →'),
-    alt.Y('Streptomycin:Q',
+          title='← Less effective --- Neomycin MIC (μg/ml) --- more effective →'),
+    alt.Y('Penicillin:Q',
           scale=alt.Scale(type='log', domain=[0.001, 1000]),
           axis=alt.Axis(tickCount=5),
-          title='Streptomycin MIC (μg/ml, reverse log scale)'),
+          title='Penicillin MIC (μg/ml, reverse log scale)'),
     alt.Color('Bacteria:N', legend=None)
 ).properties(width=250, height=250)
 
@@ -499,7 +499,7 @@ There is no *official* answer to this question, you have to look at the plot you
 * Review encoding channel `column`
 * New tools:
     * `facet` 
-    * `hconcat` or `|`
+    *  `|`
 
 
 ## Dataset
@@ -526,7 +526,7 @@ Dataset for Seattle...
 weather.head(10)
 ```
 
-## Histogram of precipitation
+## Histogram of temperature
 ```{python}
 alt.Chart(weather).mark_bar().transform_filter(
   'datum.location == "Seattle"'
@@ -557,6 +557,7 @@ alt.Chart(weather).mark_bar().transform_filter(
 ```
 
 Remark on naming variables: the textbook engages in a pretty big sin here
+
 * `weather` is used to denote the data frame
 * `weather` is ALSO used for `domain=['drizzle', 'fog', 'rain', 'snow', 'sun']`
 
@@ -648,7 +649,7 @@ temp | precip | wind
 ```
 
 
-## Facet, concatenate, and repeat summary
+## Facet and concatenate summary
 
 * Use `facet` to create a multi-panel plot which examines the same data but using different subgroups and different marks
 * `|` allows you to connect completely disparate plots
