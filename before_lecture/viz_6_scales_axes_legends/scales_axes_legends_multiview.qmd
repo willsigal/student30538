@@ -238,13 +238,6 @@ alt.Chart(antibiotics).mark_circle(size=80).encode(
 
 Discussion questions: 1) What questions does this plot answer? 2) What further questions does this plot raise?
 
-::: {.notes .content-visible when-profile="speaker"}
-**NOTES:**
-*solution
-Answers: 
-1) some bacteria respond well to neomycin but not penicillin, and vice versa!
-2) for what types of bacteria is N effective or P effective? Need some way to dig deeper. This is what we will do in the remainder of the lecture*
-:::
  
 ## choosing axis ticks (recap from lecture 4)
 ```{python}
@@ -572,11 +565,6 @@ This violates the basic principle of not using the same word for two different t
 We are not going to fix this problem because it will make this lecture note be out of sync with the textbook, but it would be easily addressed by adding `transform_calculate(sky_precip='datum.weather')`.
 
 Discussion question: are there any other obvious problems with this plot?
-
-::: {.notes .content-visible when-profile="speaker"}
-**NOTES:**
-*solution the legend is redundant because each facet has a subtitle.*
-:::
 
 ## syntax: recreate the same chart as before, but using `facet()`
 ```{python}
