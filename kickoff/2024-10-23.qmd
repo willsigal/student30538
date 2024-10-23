@@ -30,3 +30,10 @@ format:
     - By now, you should have command line git installed 
     - If you want to get ahead for the do-pair-share, fork https://github.com/uchicago-harris-dap/merge_example on github.com and then clone the repo to your computer
 
+
+## Final Project meetings
+
+Send questions in advance in Ed via tag "Final project ganong"
+
+First come first serve sign up **[here](https://docs.google.com/spreadsheets/d/1C696XfJpfB7Wz0ncMOjq2l10PUnBSZ5jBfZWawF36tg/edit?gid=0#gid=0)**. Meet in room 0049.
+
