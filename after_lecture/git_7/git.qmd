@@ -602,7 +602,7 @@ def add(x):
     return sum(x)
 ```
 
-
+Finally `git commit` your resolved version
 
 ## Resolving file-level conflicts I
 * For some file types, line-by-line adjustments will not be possible
@@ -659,14 +659,14 @@ $ git commit -m "C5: Merging main into iss1"
 * push
 
 
-## see all branches
 
-* list all branches, including branches in the remote repository which are not on your computer
+## push
 
 ```{}
-$ git branch -a 
+$ git push  <branch_name>
 ```
 
+* push (committed) changes from local to remote repository 
 
 ## fetch
 
@@ -677,6 +677,15 @@ $ git fetch
 * Get changes from remote repository to your computer.
 * This command does not modify any of your existing work. 
 * If you did some work in the same branch, you will need to do a *git merge origin* to reconcile your work with the work in the remote.
+
+
+## see all branches
+
+* list all branches, including branches in the remote repository which are not on your computer
+
+```{}
+$ git branch -a 
+```
 
 
 ## pull
@@ -715,14 +724,11 @@ When should I use each?
 * Use pull requests when you want someone else to review the change
 * Otherwise, just use `git merge`
 
-## push
+## what happens if you push and there are also changes in the remote?
 
 ```{}
-$ git push  <branch_name>
+"Updates were rejected because the remote contains work that you do not have locally. This is usually caused by another repository pushing to the same ref. You may want to first merge the remote changes (e.g., hint: 'git pull') before pushing again."
 ```
-
-* push (committed) changes from local to remote repository 
-* what happens if you push and there are also changes in the remote? "Updates were rejected because the remote contains work that you do not have locally. This is usually caused by another repository pushing to the same ref. You may want to first merge the remote changes (e.g., hint: 'git pull') before pushing again."
 
 
 ## Summary
