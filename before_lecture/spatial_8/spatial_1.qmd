@@ -240,16 +240,7 @@ line_from_tuples = LineString([(2.2, 4.2), (7.2, -25.1), (9.26, -2.456)])
 list(line.coords)
 ```
 
-```{python}
-xcoords = list(line.xy[0])
-ycoords = list(line.xy[1])
-
-print(xcoords)
-print(ycoords)
-```
-
 ## `LineString` attributes
-
 ```{python}
 xcoords = list(line.xy[0])
 ycoords = list(line.xy[1])
@@ -257,14 +248,10 @@ ycoords = list(line.xy[1])
 print(xcoords)
 print(ycoords)
 ```
-
-## `LineString` attributes, continued
 
 ```{python}
 length = line.length
-centroid = line.centroid
 print(f"Length of our line: {length:.2f} units")
-print(f"Centroid: {centroid}")
 ```
 
 

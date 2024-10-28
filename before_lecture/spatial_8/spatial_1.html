@@ -134,7 +134,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#linestring-discussion-questions" id="toc-linestring-discussion-questions" class="nav-link" data-scroll-target="#linestring-discussion-questions"><code>LineString</code> discussion questions</a></li>
   <li><a href="#linestring-coordinate-representation" id="toc-linestring-coordinate-representation" class="nav-link" data-scroll-target="#linestring-coordinate-representation"><code>LineString</code> coordinate representation</a></li>
   <li><a href="#linestring-attributes" id="toc-linestring-attributes" class="nav-link" data-scroll-target="#linestring-attributes"><code>LineString</code> attributes</a></li>
-  <li><a href="#linestring-attributes-continued" id="toc-linestring-attributes-continued" class="nav-link" data-scroll-target="#linestring-attributes-continued"><code>LineString</code> attributes, continued</a></li>
   <li><a href="#polygon-creating-geometries" id="toc-polygon-creating-geometries" class="nav-link" data-scroll-target="#polygon-creating-geometries"><code>Polygon</code>: creating geometries</a></li>
   <li><a href="#polygon-wkt" id="toc-polygon-wkt" class="nav-link" data-scroll-target="#polygon-wkt"><code>Polygon</code>: WKT</a></li>
   <li><a href="#polygon-attributes" id="toc-polygon-attributes" class="nav-link" data-scroll-target="#polygon-attributes"><code>Polygon</code>: attributes</a></li>
@@ -446,6 +445,9 @@ POINT Z (9.26 -2.456 0.57)</code></pre>
 <pre><code>[(2.2, 4.2), (7.2, -25.1), (9.26, -2.456)]</code></pre>
 </div>
 </div>
+</section>
+<section id="linestring-attributes" class="level2">
+<h2 class="anchored" data-anchor-id="linestring-attributes"><code>LineString</code> attributes</h2>
 <div class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>xcoords <span class="op">=</span> <span class="bu">list</span>(line.xy[<span class="dv">0</span>])</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>ycoords <span class="op">=</span> <span class="bu">list</span>(line.xy[<span class="dv">1</span>])</span>
@@ -457,50 +459,30 @@ POINT Z (9.26 -2.456 0.57)</code></pre>
 [4.2, -25.1, -2.456]</code></pre>
 </div>
 </div>
-</section>
-<section id="linestring-attributes" class="level2">
-<h2 class="anchored" data-anchor-id="linestring-attributes"><code>LineString</code> attributes</h2>
 <div class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>xcoords <span class="op">=</span> <span class="bu">list</span>(line.xy[<span class="dv">0</span>])</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>ycoords <span class="op">=</span> <span class="bu">list</span>(line.xy[<span class="dv">1</span>])</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(xcoords)</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ycoords)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>length <span class="op">=</span> line.length</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Length of our line: </span><span class="sc">{</span>length<span class="sc">:.2f}</span><span class="ss"> units"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[2.2, 7.2, 9.26]
-[4.2, -25.1, -2.456]</code></pre>
-</div>
-</div>
-</section>
-<section id="linestring-attributes-continued" class="level2">
-<h2 class="anchored" data-anchor-id="linestring-attributes-continued"><code>LineString</code> attributes, continued</h2>
-<div class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>length <span class="op">=</span> line.length</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>centroid <span class="op">=</span> line.centroid</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Length of our line: </span><span class="sc">{</span>length<span class="sc">:.2f}</span><span class="ss"> units"</span>)</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Centroid: </span><span class="sc">{</span>centroid<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Length of our line: 52.46 units
-Centroid: POINT (6.229961354035622 -11.892411157572392)</code></pre>
+<pre><code>Length of our line: 52.46 units</code></pre>
 </div>
 </div>
 </section>
 <section id="polygon-creating-geometries" class="level2">
 <h2 class="anchored" data-anchor-id="polygon-creating-geometries"><code>Polygon</code>: creating geometries</h2>
-<div class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shapely <span class="im">import</span> Polygon</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>poly <span class="op">=</span> Polygon([point1, point2, point3])</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>poly</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="14">
-<p><img src="spatial_1_files/figure-html/cell-15-output-1.svg" class="img-fluid"></p>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shapely <span class="im">import</span> Polygon</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>poly <span class="op">=</span> Polygon([point1, point2, point3])</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>poly</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<p><img src="spatial_1_files/figure-html/cell-14-output-1.svg" class="img-fluid"></p>
 </div>
 </div>
 </section>
 <section id="polygon-wkt" class="level2">
 <h2 class="anchored" data-anchor-id="polygon-wkt"><code>Polygon</code>: WKT</h2>
-<div class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>poly.wkt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="15">
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>poly.wkt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>'POLYGON ((2.2 4.2, 7.2 -25.1, 9.26 -2.456, 2.2 4.2))'</code></pre>
 </div>
 </div>
@@ -508,12 +490,12 @@ Centroid: POINT (6.229961354035622 -11.892411157572392)</code></pre>
 </section>
 <section id="polygon-attributes" class="level2">
 <h2 class="anchored" data-anchor-id="polygon-attributes"><code>Polygon</code>: attributes</h2>
-<div class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Polygon centroid: "</span>, poly.centroid)</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Polygon Area: "</span>, poly.area)</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Polygon Bounding Box: "</span>, poly.bounds)</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Polygon Exterior: "</span>, poly.exterior)</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Polygon Exterior Length: "</span>, poly.exterior.length)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Polygon centroid: "</span>, poly.centroid)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Polygon Area: "</span>, poly.area)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Polygon Bounding Box: "</span>, poly.bounds)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Polygon Exterior: "</span>, poly.exterior)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Polygon Exterior Length: "</span>, poly.exterior.length)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Polygon centroid:  POINT (6.22 -7.785333333333334)
 Polygon Area:  86.789
@@ -525,24 +507,24 @@ Polygon Exterior Length:  62.16395199996553</code></pre>
 </section>
 <section id="polygon-example-ii" class="level2">
 <h2 class="anchored" data-anchor-id="polygon-example-ii"><code>Polygon</code>: example II</h2>
-<div class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>exterior <span class="op">=</span> [(<span class="op">-</span><span class="dv">180</span>, <span class="dv">90</span>), (<span class="op">-</span><span class="dv">180</span>, <span class="op">-</span><span class="dv">90</span>), (<span class="dv">180</span>, <span class="op">-</span><span class="dv">90</span>), (<span class="dv">180</span>, <span class="dv">90</span>)]</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>poly_without_hole <span class="op">=</span> Polygon(shell<span class="op">=</span>exterior)</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>poly_without_hole</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="17">
-<p><img src="spatial_1_files/figure-html/cell-18-output-1.svg" class="img-fluid"></p>
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>exterior <span class="op">=</span> [(<span class="op">-</span><span class="dv">180</span>, <span class="dv">90</span>), (<span class="op">-</span><span class="dv">180</span>, <span class="op">-</span><span class="dv">90</span>), (<span class="dv">180</span>, <span class="op">-</span><span class="dv">90</span>), (<span class="dv">180</span>, <span class="dv">90</span>)]</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>poly_without_hole <span class="op">=</span> Polygon(shell<span class="op">=</span>exterior)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>poly_without_hole</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<p><img src="spatial_1_files/figure-html/cell-17-output-1.svg" class="img-fluid"></p>
 </div>
 </div>
 </section>
 <section id="polygon-example-ii-with-a-hole" class="level2">
 <h2 class="anchored" data-anchor-id="polygon-example-ii-with-a-hole"><code>Polygon</code>: example II with a hole</h2>
-<div class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the hole coordinates (a single hole in this case)</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>holes_coordinates <span class="op">=</span> [[(<span class="op">-</span><span class="dv">170</span>, <span class="dv">80</span>), (<span class="op">-</span><span class="dv">170</span>, <span class="op">-</span><span class="dv">80</span>), (<span class="dv">170</span>, <span class="op">-</span><span class="dv">80</span>), (<span class="dv">170</span>, <span class="dv">80</span>)]]</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>poly_with_hole <span class="op">=</span> Polygon(shell<span class="op">=</span>exterior, holes<span class="op">=</span>holes_coordinates)</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>poly_with_hole</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="18">
-<p><img src="spatial_1_files/figure-html/cell-19-output-1.svg" class="img-fluid"></p>
+<div class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the hole coordinates (a single hole in this case)</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>holes_coordinates <span class="op">=</span> [[(<span class="op">-</span><span class="dv">170</span>, <span class="dv">80</span>), (<span class="op">-</span><span class="dv">170</span>, <span class="op">-</span><span class="dv">80</span>), (<span class="dv">170</span>, <span class="op">-</span><span class="dv">80</span>), (<span class="dv">170</span>, <span class="dv">80</span>)]]</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>poly_with_hole <span class="op">=</span> Polygon(shell<span class="op">=</span>exterior, holes<span class="op">=</span>holes_coordinates)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>poly_with_hole</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<p><img src="spatial_1_files/figure-html/cell-18-output-1.svg" class="img-fluid"></p>
 </div>
 </div>
 </section>
