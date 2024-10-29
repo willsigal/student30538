@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Peter Ganong and Maggie Shi">
-<meta name="dcterms.date" content="2024-10-28">
+<meta name="dcterms.date" content="2024-10-29">
 
 <title>Spatial I</title>
 <style>
@@ -98,7 +98,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 28, 2024</p>
+      <p class="date">October 29, 2024</p>
     </div>
   </div>
   
@@ -153,7 +153,7 @@ include-before-body:
 <li>Represent geographic vector objects in Python using the <code>shapely</code> library</li>
 <li>Understand the basic data structures and methods of geopandas GeoDataFrames</li>
 <li>Execute common geometric operations with points, lines and polygons</li>
-<li>Conduct spatial join operations</li>
+<li>Spatial join operations</li>
 </ul></li>
 </ul>
 </section>
@@ -173,7 +173,7 @@ include-before-body:
 <p>(We will elaborate more on what this file is in minilesson on Wednesday)</p>
 <p><code>shapely</code> – Manipulation and analysis of geometric objects in the Cartesian plane.</p>
 <p><code>geopandas</code> – Geometric objects nested within a standard pandas data frame</p>
-<div id="f4860060" class="cell" data-execution_count="1">
+<div id="59870324" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> shapely</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shapely <span class="im">import</span> Polygon, Point</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -183,14 +183,6 @@ include-before-body:
 <p><img src="pictures/vector_vs_raster.jpg" style="height:80.0%"></p>
 <p><strong>Vector</strong> data records points, lines and shapes. <strong>Raster</strong> data records pixels.</p>
 <p>Discussion question – brainstorm examples of each type of data.</p>
-<!--CC to GGG:  would be good to give a few "real world" examples (from research?) 
-Redlining
-Carl Kitchens' highway research
-Satellite? research 
-
-MS to GGG: relatedly, what are the pro's and con's of each type? Something like: 
-vectors can be scaled up or down without losing integrity, but raster allows you to store fine-grained data at the pixel-level (e.g., plotting a continuous measure)
--->
 </section>
 <section id="examples-of-vector-data" class="level2">
 <h2 class="anchored" data-anchor-id="examples-of-vector-data">Examples of vector data</h2>
@@ -199,7 +191,7 @@ vectors can be scaled up or down without losing integrity, but raster allows you
 </section>
 <section id="attribute-data" class="level2">
 <h2 class="anchored" data-anchor-id="attribute-data">Attribute data</h2>
-<p>In virtually every example, we will associate <strong>attribute</strong> data with vectors – these are what might appear in a table with vector data, bu</p>
+<p>In virtually every example, we will associate <strong>attribute</strong> data with vectors – these are what might appear in a table in a standard dataframe, but now the data is associated with a point, line, or shape.</p>
 <p>Examples of data that would associate with a <em>point</em>:</p>
 <ul>
 <li>particulate matter (pollution)</li>
@@ -232,15 +224,16 @@ vectors can be scaled up or down without losing integrity, but raster allows you
 <li><code>Polygon</code></li>
 </ul>
 <p>Within each data type, we will cover creation, Well Known Text (WKT), and coordinates.</p>
+<p><em>Note: when working with spatial data, we typically will not start by creating the shapes themselves. But it is important to understand them because they form the basis of spatial data and all spatial transformation is just manipulating the underlying vectors.</em></p>
 </section>
 <section id="point-creating-geometries" class="level2">
 <h2 class="anchored" data-anchor-id="point-creating-geometries"><code>Point</code>: creating geometries</h2>
-<div id="a0ce3572" class="cell" data-execution_count="2">
+<div id="626e98c1" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shapely <span class="im">import</span> Point</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>point <span class="op">=</span> Point(<span class="fl">2.2</span>, <span class="fl">4.2</span>)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>point</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="26">
+<div class="cell-output cell-output-display" data-execution_count="67">
 <div>
 <figure class="figure">
 <p><img src="spatial_1_files/figure-html/cell-3-output-1.svg" class="img-fluid figure-img"></p>
@@ -248,12 +241,10 @@ vectors can be scaled up or down without losing integrity, but raster allows you
 </div>
 </div>
 </div>
-<!-- ZZZ
-MS comment: I anticipate students will ask, what do these coordinates meann? ChatGPT says the coordinates depend on a specific coordinate system, but we haven't defined a coordinate system yet. (https://chatgpt.com/share/66eb3cc4-8690-800f-b01f-8153f30dc78b) Without defining a coordinate system, can we say that these coordinates just represent locations relative to some arbitrary point on the screen -->
 </section>
 <section id="point-well-known-text-wkt-representation" class="level2">
 <h2 class="anchored" data-anchor-id="point-well-known-text-wkt-representation"><code>Point</code>: Well Known Text (WKT) representation</h2>
-<div id="194751d5" class="cell" data-execution_count="3">
+<div id="04eb6aec" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(point) <span class="co">#extracts WKT</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>point.wkt    <span class="co">#gets WKT directly</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -274,29 +265,29 @@ POINT Z (9.26 -2.456 0.57)</code></pre>
 </section>
 <section id="point-coordinate-representation" class="level2">
 <h2 class="anchored" data-anchor-id="point-coordinate-representation"><code>Point</code>: Coordinate representation</h2>
-<div id="9e65b448" class="cell" data-execution_count="4">
+<div id="3cce8faa" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(point.coords)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="28">
+<div class="cell-output cell-output-display" data-execution_count="69">
 <pre><code>shapely.coords.CoordinateSequence</code></pre>
 </div>
 </div>
-<div id="208ee054" class="cell" data-execution_count="5">
+<div id="4d42651e" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span>(point.coords)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="29">
+<div class="cell-output cell-output-display" data-execution_count="70">
 <pre><code>[(2.2, 4.2)]</code></pre>
 </div>
 </div>
-<p>When the object is a <code>Point</code>, the <code>WKT</code> is very similar to the coordinates. As the objects get more complicated, the formatting of <code>WKT</code> starts to deviate from coordinates.</p>
+<p>When the object is a <code>Point</code>, the <code>WKT</code> looks very similar to the coordinates. As the objects get more complicated, the formatting of <code>WKT</code> starts to deviate from coordinates.</p>
 </section>
 <section id="point-extraction-methods" class="level2">
 <h2 class="anchored" data-anchor-id="point-extraction-methods"><code>Point</code>: extraction methods</h2>
-<div id="6534a40d" class="cell" data-execution_count="6">
+<div id="88d8a53d" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(point.x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>2.2</code></pre>
 </div>
 </div>
-<div id="887256d2" class="cell" data-execution_count="7">
+<div id="e179245a" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(point.xy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>(array('d', [2.2]), array('d', [4.2]))</code></pre>
@@ -305,7 +296,7 @@ POINT Z (9.26 -2.456 0.57)</code></pre>
 </section>
 <section id="linestring-creating-geometries" class="level2">
 <h2 class="anchored" data-anchor-id="linestring-creating-geometries"><code>LineString</code>: creating geometries</h2>
-<div id="594afc10" class="cell" data-execution_count="8">
+<div id="2d45abc6" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shapely <span class="im">import</span> Point, LineString</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>point1 <span class="op">=</span> Point(<span class="fl">2.2</span>, <span class="fl">4.2</span>)</span>
@@ -315,7 +306,7 @@ POINT Z (9.26 -2.456 0.57)</code></pre>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>line <span class="op">=</span> LineString([point1, point2, point3])</span>
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>line_from_tuples <span class="op">=</span> LineString([(<span class="fl">2.2</span>, <span class="fl">4.2</span>), (<span class="fl">7.2</span>, <span class="op">-</span><span class="fl">25.1</span>), (<span class="fl">9.26</span>, <span class="op">-</span><span class="fl">2.456</span>)])</span>
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>line</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="32">
+<div class="cell-output cell-output-display" data-execution_count="73">
 <div>
 <figure class="figure">
 <p><img src="spatial_1_files/figure-html/cell-9-output-1.svg" class="img-fluid figure-img"></p>
@@ -327,7 +318,7 @@ POINT Z (9.26 -2.456 0.57)</code></pre>
 <section id="linestring-creation-syntax" class="level2">
 <h2 class="anchored" data-anchor-id="linestring-creation-syntax"><code>LineString</code>: creation syntax</h2>
 <p>These two input methods produce the same output. No “right” way. Use whichever way is more convenient in your application.</p>
-<div id="d800850b" class="cell" data-execution_count="9">
+<div id="b2129f75" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>line <span class="op">=</span> LineString([point1, point2, point3])</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>line_from_tuples <span class="op">=</span> LineString([(<span class="fl">2.2</span>, <span class="fl">4.2</span>), (<span class="fl">7.2</span>, <span class="op">-</span><span class="fl">25.1</span>), (<span class="fl">9.26</span>, <span class="op">-</span><span class="fl">2.456</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -339,22 +330,19 @@ POINT Z (9.26 -2.456 0.57)</code></pre>
 <li>What output should we expect if we run <code>print(line)</code>? Write down your guess on your MUD card before you run it at the computer.</li>
 <li>How can you access the Well Known Text representation?</li>
 </ol>
-<!-- ZZZ 1. LINESTRING (2.2 4.2, 7.2 -25.1, 9.26 -2.456) 
-
-2. line.wkt -->
 </section>
 <section id="linestring-coordinate-representation" class="level2">
 <h2 class="anchored" data-anchor-id="linestring-coordinate-representation"><code>LineString</code> coordinate representation</h2>
-<div id="c595d9f5" class="cell" data-execution_count="10">
+<div id="2bdba664" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span>(line.coords)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="34">
+<div class="cell-output cell-output-display" data-execution_count="75">
 <pre><code>[(2.2, 4.2), (7.2, -25.1), (9.26, -2.456)]</code></pre>
 </div>
 </div>
 </section>
 <section id="linestring-attributes" class="level2">
 <h2 class="anchored" data-anchor-id="linestring-attributes"><code>LineString</code> attributes</h2>
-<div id="6d12753a" class="cell" data-execution_count="11">
+<div id="4a77cee3" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>xcoords <span class="op">=</span> <span class="bu">list</span>(line.xy[<span class="dv">0</span>])</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>ycoords <span class="op">=</span> <span class="bu">list</span>(line.xy[<span class="dv">1</span>])</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -369,7 +357,7 @@ POINT Z (9.26 -2.456 0.57)</code></pre>
 <section id="linestring-attributes-continued" class="level2">
 <h2 class="anchored" data-anchor-id="linestring-attributes-continued"><code>LineString</code> attributes, continued</h2>
 <p>Length is the sum of distances between consecutive points.</p>
-<div id="71c37734" class="cell" data-execution_count="12">
+<div id="3b66d38b" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>length <span class="op">=</span> line.length</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Length of our line: </span><span class="sc">{</span>length<span class="sc">:.2f}</span><span class="ss"> units"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -379,11 +367,11 @@ POINT Z (9.26 -2.456 0.57)</code></pre>
 </section>
 <section id="polygon-creating-geometries" class="level2">
 <h2 class="anchored" data-anchor-id="polygon-creating-geometries"><code>Polygon</code>: creating geometries</h2>
-<div id="c478c5e0" class="cell" data-execution_count="13">
+<div id="53894eb1" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shapely <span class="im">import</span> Polygon</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>poly <span class="op">=</span> Polygon([point1, point2, point3])</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>poly</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="37">
+<div class="cell-output cell-output-display" data-execution_count="78">
 <div>
 <figure class="figure">
 <p><img src="spatial_1_files/figure-html/cell-14-output-1.svg" class="img-fluid figure-img"></p>
@@ -394,29 +382,29 @@ POINT Z (9.26 -2.456 0.57)</code></pre>
 </section>
 <section id="polygon-wkt" class="level2">
 <h2 class="anchored" data-anchor-id="polygon-wkt"><code>Polygon</code>: WKT</h2>
-<div id="6424a566" class="cell" data-execution_count="14">
+<div id="fb672036" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>poly.wkt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="38">
+<div class="cell-output cell-output-display" data-execution_count="79">
 <pre><code>'POLYGON ((2.2 4.2, 7.2 -25.1, 9.26 -2.456, 2.2 4.2))'</code></pre>
 </div>
 </div>
 <p>Note the double parentheses. In contrast:</p>
-<div id="7841cca4" class="cell" data-execution_count="15">
+<div id="77181436" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>line.wkt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="39">
+<div class="cell-output cell-output-display" data-execution_count="80">
 <pre><code>'LINESTRING (2.2 4.2, 7.2 -25.1, 9.26 -2.456)'</code></pre>
 </div>
 </div>
 </section>
 <section id="polygon-attributes" class="level2">
 <h2 class="anchored" data-anchor-id="polygon-attributes"><code>Polygon</code>: attributes</h2>
-<div id="a2ef0a01" class="cell" data-execution_count="16">
+<div id="cad786e5" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Polygon centroid: "</span>, poly.centroid)</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>poly.centroid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Polygon centroid:  POINT (6.22 -7.785333333333334)</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="40">
+<div class="cell-output cell-output-display" data-execution_count="81">
 <div>
 <figure class="figure">
 <p><img src="spatial_1_files/figure-html/cell-17-output-2.svg" class="img-fluid figure-img"></p>
@@ -424,33 +412,33 @@ POINT Z (9.26 -2.456 0.57)</code></pre>
 </div>
 </div>
 </div>
-<div id="4ae54d53" class="cell" data-execution_count="17">
+<div id="179e3ce1" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Polygon Area: "</span>, poly.area)</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>poly.area </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Polygon Area:  86.789</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="41">
+<div class="cell-output cell-output-display" data-execution_count="82">
 <pre><code>86.789</code></pre>
 </div>
 </div>
-<div id="35d87167" class="cell" data-execution_count="18">
+<div id="d9899ba7" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Polygon Bounding Box: "</span>, poly.bounds)</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>poly.bounds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Polygon Bounding Box:  (2.2, -25.1, 9.26, 4.2)</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="42">
+<div class="cell-output cell-output-display" data-execution_count="83">
 <pre><code>(2.2, -25.1, 9.26, 4.2)</code></pre>
 </div>
 </div>
-<div id="e55e053a" class="cell" data-execution_count="19">
+<div id="c8130af5" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Polygon Exterior: "</span>, poly.exterior)</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>poly.exterior</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Polygon Exterior:  LINEARRING (2.2 4.2, 7.2 -25.1, 9.26 -2.456, 2.2 4.2)</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="43">
+<div class="cell-output cell-output-display" data-execution_count="84">
 <div>
 <figure class="figure">
 <p><img src="spatial_1_files/figure-html/cell-20-output-2.svg" class="img-fluid figure-img"></p>
@@ -458,24 +446,26 @@ POINT Z (9.26 -2.456 0.57)</code></pre>
 </div>
 </div>
 </div>
-<div id="229cb91e" class="cell" data-execution_count="20">
+<p><code>LinearRing</code> is similar to a <code>LineString</code>, but it it must be: 1. a closed loop 2. cannot intersect itself</p>
+<p><code>Polygon</code>s can be easily formed from <code>LinearRing</code>s but not all <code>LineString</code>s can be transformed into polygons.</p>
+<div id="eaf6046e" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Polygon Exterior Length: "</span>, poly.exterior.length)</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>poly.exterior.length</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Polygon Exterior Length:  62.16395199996553</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="44">
+<div class="cell-output cell-output-display" data-execution_count="85">
 <pre><code>62.16395199996553</code></pre>
 </div>
 </div>
 </section>
 <section id="polygon-example-ii" class="level2">
 <h2 class="anchored" data-anchor-id="polygon-example-ii"><code>Polygon</code>: example II</h2>
-<div id="a813b72d" class="cell" data-execution_count="21">
+<div id="27d161e4" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>exterior <span class="op">=</span> [(<span class="op">-</span><span class="dv">180</span>, <span class="dv">90</span>), (<span class="op">-</span><span class="dv">180</span>, <span class="op">-</span><span class="dv">90</span>), (<span class="dv">180</span>, <span class="op">-</span><span class="dv">90</span>), (<span class="dv">180</span>, <span class="dv">90</span>)]</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>poly_without_hole <span class="op">=</span> Polygon(shell<span class="op">=</span>exterior)</span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>poly_without_hole</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="45">
+<div class="cell-output cell-output-display" data-execution_count="86">
 <div>
 <figure class="figure">
 <p><img src="spatial_1_files/figure-html/cell-22-output-1.svg" class="img-fluid figure-img"></p>
@@ -483,10 +473,10 @@ POINT Z (9.26 -2.456 0.57)</code></pre>
 </div>
 </div>
 </div>
-<div id="0332facf" class="cell" data-execution_count="22">
+<div id="2fd7f3f6" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>linestring_from_exterior <span class="op">=</span> LineString(exterior)</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>linestring_from_exterior</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="46">
+<div class="cell-output cell-output-display" data-execution_count="87">
 <div>
 <figure class="figure">
 <p><img src="spatial_1_files/figure-html/cell-23-output-1.svg" class="img-fluid figure-img"></p>
@@ -497,12 +487,12 @@ POINT Z (9.26 -2.456 0.57)</code></pre>
 </section>
 <section id="polygon-example-ii-with-a-hole" class="level2">
 <h2 class="anchored" data-anchor-id="polygon-example-ii-with-a-hole"><code>Polygon</code>: example II with a hole</h2>
-<div id="b94877a3" class="cell" data-execution_count="23">
+<div id="4acf880d" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the hole coordinates (a single hole in this case)</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>holes_coordinates <span class="op">=</span> [[(<span class="op">-</span><span class="dv">170</span>, <span class="dv">80</span>), (<span class="op">-</span><span class="dv">170</span>, <span class="op">-</span><span class="dv">80</span>), (<span class="dv">170</span>, <span class="op">-</span><span class="dv">80</span>), (<span class="dv">170</span>, <span class="dv">80</span>)]]</span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>poly_with_hole <span class="op">=</span> Polygon(shell<span class="op">=</span>exterior, holes<span class="op">=</span>holes_coordinates)</span>
 <span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>poly_with_hole</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="47">
+<div class="cell-output cell-output-display" data-execution_count="88">
 <div>
 <figure class="figure">
 <p><img src="spatial_1_files/figure-html/cell-24-output-1.svg" class="img-fluid figure-img"></p>

@@ -84,14 +84,6 @@ from shapely import Polygon, Point
 
 Discussion question -- brainstorm examples of each type of data.
 
-<!--CC to GGG:  would be good to give a few "real world" examples (from research?) 
-Redlining
-Carl Kitchens' highway research
-Satellite? research 
-
-MS to GGG: relatedly, what are the pro's and con's of each type? Something like: 
-vectors can be scaled up or down without losing integrity, but raster allows you to store fine-grained data at the pixel-level (e.g., plotting a continuous measure)
--->
 
 ## Examples of vector data
 
@@ -103,7 +95,7 @@ The numbers are called **well-known text**: a version of the data which is easil
 
 ## Attribute data
 
-In virtually every example, we will associate **attribute** data with vectors -- these are what might appear in a table with vector data, bu
+In virtually every example, we will associate **attribute** data with vectors -- these are what might appear in a table in a standard dataframe, but now the data is associated with a point, line, or shape.
 
 Examples of data that would associate with a *point*:
 
@@ -131,8 +123,9 @@ Discussion question: what type of data would you associate with...
 -   `LineString`
 -   `Polygon`
 
-Within each data type, we will cover creation, Well Known Text (WKT), and coordinates.
+Within each data type, we will cover creation, Well Known Text (WKT), and coordinates. 
 
+*Note: when working with spatial data, we typically will not start by creating the shapes themselves. But it is important to understand them because they form the basis of spatial data and all spatial transformation is just manipulating the underlying vectors.*
 
 
 ## `Point`: creating geometries
@@ -168,7 +161,7 @@ type(point.coords)
 list(point.coords)
 ```
 
-When the object is a `Point`, the `WKT` is very similar to the coordinates. As the objects get more complicated, the formatting of `WKT` starts to deviate from coordinates. 
+When the object is a `Point`, the `WKT` looks very similar to the coordinates. As the objects get more complicated, the formatting of `WKT` starts to deviate from coordinates. 
 
 ## `Point`: extraction methods
 
@@ -283,6 +276,12 @@ print("Polygon Exterior: ", poly.exterior)
 poly.exterior
 ```
 
+`LinearRing` is similar to a `LineString`, but it it must be:
+    1. a closed loop
+    2. cannot intersect itself
+
+`Polygon`s can be easily formed from `LinearRing`s but not all `LineString`s can be transformed into polygons.
+
 ```{python}
 print("Polygon Exterior Length: ", poly.exterior.length)
 poly.exterior.length
@@ -330,6 +329,6 @@ poly_with_hole
 
 Methods
 
--   any type: `.coords`, `.x`, `.xy`
+-   any type: `.coords`, `.x`, `.xy`, `.wkt`
 -   `LineString` or `Polygon`: `.centroid`, `.length`
 -   `Polygon`: `.bounds`, `.area`, `.exterior`
