@@ -1,4 +1,4 @@
----
+<!-- ---
 title: "Spatial II"
 author: "Peter Ganong and Maggie Shi"
 date: today
@@ -19,6 +19,19 @@ include-before-body:
       breaklines
     }
     
+--- -->
+
+---
+title: "Spatial II"
+author: "Peter Ganong and Maggie Shi"
+date: today
+date-format: long
+toc: false
+execute: 
+    echo: true
+format:
+    html:
+        toc: false 
 ---
 
 # Introduction to data structures in geopandas (6.2)
@@ -54,13 +67,6 @@ Vocabulary
 -   Usually also have `.prj` which describes the Coordinate Reference System (CRS)
 -   When you read in `map.shp` it automatically reads the rest of them as well to give you proper GeoDataFrame composed of geometry, attributes and projection.
 
-## File format II: GeoPackage
-
--   single file `.gpkg`
--   Supports both raster and vector data
--   Efficiently decodable by software, particularly in mobile devices
-
-GeoPackage is more modern, but you will encounter shapefiles everywhere you look so good to be familiar with it.
 
 ## Coordinate Reference Systems
 - Coordinate Reference System (CRS) is a combination of:
@@ -76,7 +82,6 @@ GeoPackage is more modern, but you will encounter shapefiles everywhere you look
     - (Aside: EPSG stands for European Petroleum Survey Group)
     - These codes are used to convert one CRS into another
 
-
 ## Reading a Shapefile `.shp`
 
 ```{python}
@@ -85,6 +90,15 @@ filepath = "data/shp/austin_pop_2019.shp"
 data = gpd.read_file(filepath)
 ```
 
+
+## File format II: GeoPackage
+
+-   single file `.gpkg`
+-   Supports both raster and vector data
+-   Efficiently decodable by software, particularly in mobile devices
+
+GeoPackage is more modern, but you will encounter shapefiles everywhere you look so good to be familiar with it.
+
 ## Reading a GeoPackage `gpkg`
 
 ```{python}
@@ -92,6 +106,9 @@ filepath = "data/austin_pop_2019.gpkg"
 data = gpd.read_file(filepath)
 type(data)
 ```
+
+
+
 
 ## Previewing a `GeoDataFrame`
 
@@ -111,6 +128,7 @@ data.plot()
 Discussion question: Why isn't it enough to just to `head()`?
 
 
+
 ## Geopandas summary
 
 -   `GeoDataFrame` and `GeoSeries` are the counterparts of `pandas.DataFrame` and `pandas.Series`
@@ -125,12 +143,12 @@ Discussion question: Why isn't it enough to just to `head()`?
 -   my first choropleth
 
 
+
 ## `GeoSeries`
 
 ```{python}
 type(data["geometry"])
 ```
-
 
 ## `head()`
 
@@ -159,6 +177,7 @@ data.plot(column="area_km2", legend=True)
 ```
 
 Why is this a nearly useless set of colors?
+
 
 ## geometries: summary
 
@@ -315,7 +334,6 @@ dissolved
 
 - Aggregating alters the way the data is indexed and makes the grouping variable the index
 - We need to reset it in order to plot, since some plotting libraries expect data to be indexed in a specific way
-
 
 ## methods: dissolve III
 ```{python}
