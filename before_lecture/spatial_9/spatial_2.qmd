@@ -242,6 +242,13 @@ What it is: the tightest possible rectangle around a shape, capturing all of its
 
 Sample use case: filtering a larger spatial dataset to subset of interest
 
+```{python}
+data["centroid"] = data.centroid
+
+data[['tract', 'centroid', 'geometry']]
+data.set_geometry('centroid')
+data['geometry'].area
+```
 ## methods: bounding box for each polygon I
 
 ```{python}
@@ -311,6 +318,8 @@ dissolved = data[["pop2019", "area_km2", "dense", "geometry"]].dissolve(
 #aggregation step set index to "dense", reset to default
 dissolved = dissolved.reset_index()
 dissolved
+
+dissolved['geometry']
 ```
 
 - Aggregating alters the way the data is indexed and makes the grouping variable the index
@@ -367,6 +376,31 @@ Steps
 1. From the `dissolved` `GeoDataFrame`, get the polygon for the dense areas
 2. Create a new geometry object called `geo`, which is the dense areas with a 500m buffer
 3. `geo.plot()` 
+
+```{python}
+data['dense']
+```
+
+```{python}
+austin = data.plot(color = 'grey')
+
+```
+
+
+```{python}
+
+austin = data.plot(color = 'grey')
+geo = dissolved[dissolved['dense'] == 1]
+
+geo = geo.reset_index()
+
+geo = geo.buffer(500)
+
+geo.plot(ax = austin, alpha = .5)
+
+```
+
+
 
 After you are done, here are some cosmetic suggestions:
 

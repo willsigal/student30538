@@ -304,10 +304,55 @@ poly_with_hole
 ## Do-pair-Share
 
 1.  Create a triangle
+
+```{python}
+point1 = (0, 0)
+point2 = (1, 0)
+point3 = (0.5, 1)
+
+triangle = Polygon([point1, point2, point3])
+triangle
+
+```
+
 2.  Create a square
+
+```{python}
+point1 = (0, 0)
+point2 = (0, 2)
+point3 = (2, 2)
+point4 = (2, 0)
+
+
+square = Polygon([point1, point2, point3, point4])
+
+square
+```
+
 3.  Create a circle (hint: look up the `buffer` method in `shapely`)
 
+```{python}
+point = Point(0, 0)
 
+buffer = point.buffer(2)
+
+buffer
+```
+
+```{python}
+triangle = Polygon([(0, 0), (1, 0), (0.5, 1)])
+
+# Expand the triangle by a distance of 0.2
+expanded_triangle = triangle.buffer(6)
+
+# Shrink the triangle by a distance of 0.1
+shrunk_triangle = triangle.buffer(-0.1)
+
+print("Expanded Triangle Area:", expanded_triangle.area)
+print("Shrunk Triangle Area:", shrunk_triangle.area)
+
+expanded_triangle
+```
 ## geo data in vectors: summary
 
 | Data type    | Well-known text (WKT)                  |
