@@ -295,6 +295,7 @@ with open(r'files/simple.html', 'r') as page:
 - The `soup` object is the website content, parsed into an easy-to-use reference
 - `lxml` is an external resource used by browsers to parse HTML
 ```{python}
+#| echo: true
 soup = BeautifulSoup(text, 'lxml')
 ```
 
