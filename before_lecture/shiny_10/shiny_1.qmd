@@ -124,6 +124,10 @@ In this class, both the UI and the server run on a single computer -- yours.
 ![](pictures/output_1.png){ width=55% fig-align="center"}
 
 
+## UI and Server
+![](pictures/process_5.pdf){ width=70% fig-align="center"}
+
+
 ## Shiny App Syntax
 Shiny apps always have the following structure:
 
@@ -239,7 +243,21 @@ $ cd <dir_for_shiny_app>
 ```{}
 $ shiny create
 ```
+- Choose "Basic app" as the template
+    - In a future lecture we will explore the other templates
 
+\vspace{2ex}
+
+![](pictures/directory_4.png){ width=50% fig-align="center"}
+
+. . .
+
+- Don't use Shiny Express
+
+![](pictures/directory_5.png){ width=50% fig-align="center"}
+
+
+## Create Your Shiny App (continued)
 - Click "Enter" for destination category (since you've already `cd`-ed into that directory)
 
 ![](pictures/directory_6.png){ width=50% fig-align="center"}
@@ -250,20 +268,6 @@ $ shiny create
 
 ![](pictures/directory_7.png){ width=65% fig-align="center"}
 
-
-## Create Your Shiny App
-- Choose "Basic app" as the template
-    - In a future lecture we will explore the other templates
-
-\vspace{2ex}
-
-![](pictures/directory_4.png){ width=60% fig-align="center"}
-
-. . .
-
-- Don't use Shiny Express
-
-![](pictures/directory_5.png){ width=60% fig-align="center"}
 
 ## Your New Shiny App 
 
@@ -311,6 +315,8 @@ $ shiny run basic-app/app.py
 ![](pictures/directory_11.png){ width=40% fig-align="center"}
 
 ## In-class exercise
+
+Follow instructions on slides 26-32 to deploy `basic-app`
 
 ```{}
 $ pip install shiny
@@ -364,17 +370,17 @@ app = App(app_ui, server)
 :::
 
 ::: {.column width="50%"}
-![](pictures/directory_11.png){ width=100% fig-align="center"}
+![](pictures/directory_11.png){ width=90% fig-align="center"}
 
 Walk through
 
 * `ui.panel_title()`
 
-\vspace{-1.5ex}
+\vspace{-1ex}
 
 * `ui.input_slider()`
 
-\vspace{-1.5ex}
+\vspace{-1ex}
 
 * `ui.output_text_verbatim()`
 
@@ -455,7 +461,7 @@ app = App(app_ui, server)
 
 ::: {.column width="50%"}
 
-\begin{center} Component: input slider \end{center}
+\begin{center} Component: **input** slider \end{center}
 
 
 ```{python}
@@ -507,7 +513,7 @@ app = App(app_ui, server)
 
 \footnotesize
 
-\begin{center}Component: text\end{center}
+\begin{center}Component: **output** text verbatim \end{center}
 
 **UI**: 
 
@@ -532,7 +538,8 @@ def txt():
     return f"n*2 is {input.n() * 2}"
 ```
 
--  `"txt"` on UI side corresponds to `txt()` on the server side
+-  Shiny's syntax: `"txt"` on UI side corresponds to `txt()` on the server side
+\vspace{-1ex}
 - We use `@render.text` to indicate that `txt()` should be rendered as text
 
 :::
@@ -544,11 +551,11 @@ def txt():
 
 ## Understand Your First Shiny App: Summary
 
-- Ask user for `ui.input_slider("n")` 
-- Give input to server as `input.n()`
-- Compute `n * 2`
-- Get output from server as `def txt()`
-- Display output as `ui.output_text_verbatim("txt")`
+- UI: ask user for `ui.input_slider("n")` 
+- Server: receive input as as `input.n()`
+- Server: compute `n * 2`
+- Server: get output from server as `def txt():`
+- UI: display output as `ui.output_text_verbatim("txt")`
 
 # Build Your Second Shiny App
 
@@ -565,7 +572,7 @@ Steps
 
 ## Jupyter Widgets 
 - Shiny supports Jupyter Widgets via `shinywidgets` package
-    - Students using anaconda needed to instead use a different  `anywidget`
+    - About 10\% of students needed to instead use a different  `anywidget`
 - We'll focus on using `shinywidgets` to incorporate `altair` plots, but it also supports many other interactive widgets from Jupyter Notebooks: `plotly`, `pydeck`, `bokeh`, etc.
 
 ```{}
@@ -573,10 +580,11 @@ $ pip install shinywidgets
 ```
 
 ## Altair Jupyter Widget
+- **UI-side**: `shinywidgets` has its own UI output element: `output_widget()`
 - **Server-side**: Altair has its own render function through `shinywidgets`: `@render_altair` 
 
-- **UI-side**: `shinywidgets` has its own UI output element: `output_widget()`
 - First, import required packages
+
 ```{python}
 from shinywidgets import render_altair, output_widget
 import altair as alt
@@ -603,10 +611,12 @@ def server(input, output, session):
         )
 ```
 
+<!--
 - `sample = np.random.normal(input.n(), 20, 100)` is `numpy` code that defines a normally-distributed random sample:
     - mean: `input.n()`
     - standard deviation: `20`
     - number of observations: `100`
+--> 
 
 ## Build Your Second Shiny App 
 - Then moving on to the UI side:
@@ -672,11 +682,11 @@ If you have the app running and then you modify `app.py` and save it again, the 
 
 - Display output as `output_widget("my_hist")`
 
-Remark: this is very similar to what the original basic app did with `ui.input_slider("n")` => `input.n()` => `def txt()` => `ui.output_text_verbatim("txt")`
+Remark: this is very similar to what the original basic app did with `ui.input_slider("n")` -> `input.n()` -> `def txt()` -> `ui.output_text_verbatim("txt")`
 
 You can now see the general pattern:
 
-- *Syntax for input*: `x` on UI side becomes `x.input()` on server side
+- *Syntax for input*: `x` on UI side becomes `input.x()` on server side
 
 \vspace{-1.5ex}
 
@@ -711,11 +721,11 @@ def my_hist():
 ## Example 1, continued 
 - Once we save `app.py`, the app will refresh and display:
 
-![](pictures/basic_app_error1.png){ width=40% fig-align="center"}
+![](pictures/basic_app_error1.png){ width=50% fig-align="center"}
 
 - And we will also get a similar error in terminal
 
-![](pictures/basic_app_error2.png){ width=80% fig-align="center"}
+![](pictures/basic_app_error2.png){ width=60% fig-align="center"}
 
 ## Example 2
 - But say that we mis-typed one of the UI elements: `output_wdget()`
@@ -813,7 +823,7 @@ Steps to a dashboard in Shiny
 4. Write a Python function which returns material to display 
 \vspace{-1ex}
 
-5. Display it in the UI Send output back
+5. Display it in the UI 
 
 \vspace{-1ex}
 
