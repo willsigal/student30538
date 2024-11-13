@@ -99,7 +99,9 @@ I wasn't able to get Altair plots to render alongside `ui.output_text_verbatim`.
 Goal: Update the app from last class using the code above
 
 1. navigate to app folder: `student30538/before_lecture/shiny_11/apps_for_class/normal_distn_app/`
-2. In VSCode, modify `app.py` with the extra line in `app_ui` and the new function `my_sumstats()`
+2. In VSCode, modify `app.py` with the material from the prior slides in lecture
+    * add the extra line in `app_ui` 
+    * add the new function `my_sumstats()`
 3. In terminal, `shiny run --reload app.py`
 
 
@@ -134,19 +136,6 @@ def my_sumstats():
     return "Min:" + str(min) + ", Median: " + str(median), ", Max: " +str(max)
 ```
 
-
-## Reactive Functions: Normal Distribution Example
-- Can we resolve this just by deleting one of the `sample` definitions? 
-- Let's try removing it from `my_sumstats()`:
-
-```{python}
-@render.text
-def my_sumstats():
-    min = np.min(sample)
-    max = np.max(sample)
-    median = np.median(sample)
-    return "Min:" + str(min) + ", Median: " + str(median), ", Max: " +str(max)
-```
 
 ## Reactive Functions: Normal Distribution Example
 ![](pictures/basic_app_error3.png){ width=80% fig-align="center"}
@@ -185,13 +174,12 @@ def sample():
 - And remove any prior code that defines `sample`
 \AddToHookNext{env/Highlighting/begin}{\tiny}
 ```{python}
-@render_altair
-    def my_hist():
-        sample = np.random.normal(input.mu(), 20, 100)
-        df = pd.DataFrame({'sample': sample})
-        return(alt.Chart(df).mark_bar().encode(
-                alt.X('sample:Q', bin=True), 
-                alt.Y("count()")))
+@render.plot
+def my_hist():
+    sample = np.random.normal(input.n(), 20, 200)
+    fig, ax = plt.subplots()
+    ax.hist(sample, bins=30, color='blue', alpha=0.7)
+    return fig
 
 @render.text
 def my_sumstats():
@@ -237,7 +225,7 @@ So far we have seen `@reactive.calc`. Next lecture, we will also cover `@reactiv
 
 
 ## Reactive Functions: Summary 
-- **Reactive functions** are functions that reactively run when one of their dependencies change
+- **Reactive functions** are functions that run when one of their dependencies change
 - Ensure values are consistent across different parts of your app
 - Minimize redundant and unnecessary re-calculations
 - This section used a toy example where it is easy for the computer to re-calculate everything. In the next section, we will turn to a more realistic example.
@@ -274,17 +262,13 @@ Starting with external data on COVID cases and deaths by state, create an app th
 
 ## COVID Data Example: Roadmap
 
-1. Create skeleton `covid/app.py`
+1. Familiarize ourselves with the data
+1. Create skeleton `app.py`
 2. Input state as a dropdown list
 3. Import data (a reactive calculation)
 4. Filter to selected state (another reactive calculation)
 5. Display selected state data
 6. Add a timeseries plot (next section)
-
-## COVID Data Example: Starting point 
-- In student repo `shiny_11` you have `covid/nyt_covid19_data.csv`
-- Create an empty text file in that same folder called `app.py`
-- In Terminal, `cd` to that folder
 
 ## COVID Data Example: Data
 - Before we work on the app, let's familiarize ourselves with the data: `nyt_covid19_data.csv` 
@@ -300,7 +284,7 @@ import pandas as pd
 ```{python}
 #| eval: false
 
-df = pd.read_csv("covid/nyt_covid19_data.csv") 
+df = pd.read_csv("apps_for_class/covid/nyt_covid19_data.csv") 
 print(df.head())
 print("First date: " + str(df['date'].min()))
 print("Last date: " + str(df['date'].max()))
@@ -311,7 +295,7 @@ print("Last date: " + str(df['date'].max()))
 ```{python}
 #| eval: true
 #| echo: false
-df = pd.read_csv("covid/nyt_covid19_data.csv") 
+df = pd.read_csv("apps_for_class/covid/nyt_covid19_data.csv") 
 print(df.head())
 print("First date: " + str(df['date'].min()))
 print("Last date: " + str(df['date'].max()))
@@ -351,7 +335,7 @@ app_ui = ui.page_fluid(
 )
 ```
 
-- Hard-coding every state name is not ideal. Next lecture, we'll discuss how to make it more 'reactive'
+- Hard-coding every state name is not ideal. Next lecture, we'll discuss how to pre-populate this list.
 
 ## Step 3: Import data 
 - We will import the data on the **server side** as a reactive function 
